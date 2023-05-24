@@ -8177,7 +8177,6 @@ ul.menus_item_child {
   -webkit-animation-timing-function: ease-in;
 }
 #menus > div.menus_items > div > a {
-  letter-spacing: 0.3rem;
   font-weight: 700;
   padding: 0em 0.8em 0em 1em;
   height: 35px;
