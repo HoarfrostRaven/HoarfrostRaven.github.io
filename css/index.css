@@ -14427,7 +14427,6 @@ body[data-type="about"] #web_bg {
 }
 
 .author-content-item.personalities {
-  height: 100%;
   width: 39%;
 }
 
@@ -14783,7 +14782,7 @@ body[data-type="about"] #web_bg {
     height: 95%;
   }
   .author-content-item.personalities {
-    height: 800px;
+    height: 200px;
   }
   .post-tips {
     left: auto;
