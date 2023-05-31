@@ -14428,6 +14428,7 @@ body[data-type="about"] #web_bg {
 
 .author-content-item.personalities {
   width: 39%;
+  height: 400px;
 }
 
 .author-content-item.personalities .image {
@@ -14780,9 +14781,6 @@ body[data-type="about"] #web_bg {
   }
   .author-content-item.selfInfo {
     height: 95%;
-  }
-  .author-content-item.personalities {
-    height: 200px;
   }
   .post-tips {
     left: auto;
