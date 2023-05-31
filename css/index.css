@@ -14496,7 +14496,7 @@ body[data-type="about"] #web_bg {
 
 .author-content-item.map .map-title {
   position: absolute;
-  bottom: 0;
+  bottom: -100%;
   left: 0;
   width: 100%;
   background: var(--anzhiyu-maskbg);
@@ -14550,7 +14550,7 @@ body[data-type="about"] #web_bg {
   background-position-y: 50%;
 }
 .author-content-item.map:hover .map-title {
-  bottom: -100%;
+  bottom: 0;
 }
 .author-content-item-group.column {
   display: flex;
