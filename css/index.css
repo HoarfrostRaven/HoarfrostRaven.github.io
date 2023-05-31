@@ -14482,7 +14482,7 @@ body[data-type="about"] #web_bg {
   max-height: 400px;
   position: relative;
   overflow: hidden;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
   height: 100%;
   transition: 1s ease-in-out;
   background-size: 100%;
