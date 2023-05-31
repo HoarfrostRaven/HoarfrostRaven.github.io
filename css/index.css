@@ -14427,7 +14427,7 @@ body[data-type="about"] #web_bg {
 }
 
 .author-content-item.personalities {
-  width: 59%;
+  width: 39%;
 }
 
 .author-content-item.personalities .image {
@@ -14540,7 +14540,7 @@ body[data-type="about"] #web_bg {
   width: 59%;
 }
 .author-content-item-group.column.map {
-  width: 39%;
+  width: 59%;
 }
 .author-content-item.map:hover {
   background-size: 110%;
