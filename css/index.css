@@ -14445,7 +14445,7 @@ body[data-type="about"] #web_bg {
   transition: filter 375ms ease-in 0.2s;
 }
 .author-content-item.personalities:hover .image {
-  transform: rotate(-10deg);
+  transform: rotate(10deg);
 }
 .author-content-item.myphoto {
   height: 60%;
