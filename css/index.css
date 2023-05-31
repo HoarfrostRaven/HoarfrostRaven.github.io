@@ -14282,7 +14282,8 @@ body[data-type="about"] #web_bg {
 .aboutsiteTips .mask span {
   display: block;
   box-sizing: border-box;
-  position: absolute;
+  /* position: absolute; */
+  white-space: nowrap;
   top: 36px;
   padding-bottom: var(--offset);
   background-size: 100% 100%;
