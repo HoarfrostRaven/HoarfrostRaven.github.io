@@ -14895,7 +14895,6 @@ body[data-type="about"] #web_bg {
   flex-direction: column;
   width: 50%;
   min-height: 450px;
-  max-height: 900px;
 }
 .skills .skill-icon {
   width: 32px;
@@ -14948,9 +14947,7 @@ body[data-type="about"] #web_bg {
 }
 
 .author-content-item.careers {
-  display: flex;
   min-height: 400px;
-  max-height: 800px;
 }
 .author-content-item.careers .careers-group {
   margin-top: 12px;
