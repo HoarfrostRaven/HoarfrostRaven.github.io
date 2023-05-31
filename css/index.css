@@ -14432,7 +14432,7 @@ body[data-type="about"] #web_bg {
 
 .author-content-item.personalities .image {
   position: absolute;
-  right: 30px;
+  right: 10px;
   top: 10px;
   width: 220px;
   transition: transform 2s cubic-bezier(0.13, 0.45, 0.21, 1.02);
@@ -14543,7 +14543,7 @@ body[data-type="about"] #web_bg {
   width: 59%;
 }
 .author-content-item.map:hover {
-  background-size: 110%;
+  background-size: 101%;
   transition: 1s ease-in-out;
   background-position-x: 50%;
   background-position-y: 50%;
@@ -14782,7 +14782,7 @@ body[data-type="about"] #web_bg {
     height: 95%;
   }
   .author-content-item.personalities {
-    height: 200px;
+    height: 400px;
   }
   .post-tips {
     left: auto;
