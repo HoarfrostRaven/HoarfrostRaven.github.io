@@ -14434,10 +14434,9 @@ body[data-type="about"] #web_bg {
 .author-content-item.personalities .image {
   position: absolute;
   right: 10px;
-  top: 50%;
+  bottom: 10px;
   width: 220px;
-  transform: translate(0, -50%) cubic-bezier(0.13, 0.45, 0.21, 1.02);
-  transition: transform 2s;
+  transition: transform 2s cubic-bezier(0.13, 0.45, 0.21, 1.02);
 }
 .author-content-item.personalities .image img {
   display: block;
