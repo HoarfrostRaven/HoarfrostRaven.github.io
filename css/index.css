@@ -14497,7 +14497,7 @@ body[data-type="about"] #web_bg {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 41%;
+  width: 100%;
   background: var(--anzhiyu-maskbg);
   padding: 0.5rem 2rem;
   backdrop-filter: saturate(180%) blur(20px);
@@ -14540,7 +14540,7 @@ body[data-type="about"] #web_bg {
   width: 59%;
 }
 .author-content-item-group.column.map {
-  width: 41%;
+  width: 39%;
 }
 .author-content-item.map:hover {
   background-size: 110%;
