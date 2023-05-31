@@ -14483,7 +14483,6 @@ body[data-type="about"] #web_bg {
   overflow: hidden;
   margin-bottom: 0.5rem;
   height: 100%;
-  width: 41%;
   transition: 1s ease-in-out;
   background-size: 100%;
   background-repeat: no-repeat;
@@ -14537,8 +14536,11 @@ body[data-type="about"] #web_bg {
   font-size: 34px;
   line-height: 1;
 }
-.author-content-item-group.column.mapAndInfo {
+.author-content-item-group.column.selfInfo {
   width: 59%;
+}
+.author-content-item-group.column.map {
+  width: 41%;
 }
 .author-content-item.map:hover {
   background-size: 110%;
