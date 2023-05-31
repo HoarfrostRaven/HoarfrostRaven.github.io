@@ -14276,9 +14276,8 @@ body[data-type="about"] #web_bg {
 .aboutsiteTips .mask {
   height: 36px;
   position: relative;
-  overflow: hidden;
+  overflow: visible;
   margin-top: 4px;
-  width: 100%;
 }
 .aboutsiteTips .mask span {
   display: block;
