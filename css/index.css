@@ -14497,7 +14497,7 @@ body[data-type="about"] #web_bg {
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
+  width: 41%;
   background: var(--anzhiyu-maskbg);
   padding: 0.5rem 2rem;
   backdrop-filter: saturate(180%) blur(20px);
