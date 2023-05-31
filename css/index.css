@@ -14555,7 +14555,7 @@ body[data-type="about"] #web_bg {
   width: 59%;
 }
 .author-content-item.map:hover {
-  background-size: 120%;
+  background-size: 100%;
   transition: 4s ease-in-out;
   background-position-x: 0;
   background-position-y: 36%;
