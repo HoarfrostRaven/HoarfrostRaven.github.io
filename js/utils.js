@@ -532,25 +532,25 @@ const anzhiyu = {
       }, 800);
     }
   },
-  sayhi: function () {
-    const $sayhiEl = document.getElementById("author-info__sayhi");
+  sayHi: function () {
+    const $sayHiEl = document.getElementById("author-info__sayhi");
     const getTimeState = function () {
-      var e = new Date().getHours(),
-        t = "";
-      return (
-        0 <= e && e <= 5
-          ? (t = "晚安😴")
-          : 5 < e && e <= 10
-          ? (t = "早上好👋")
-          : 10 < e && e <= 14
-          ? (t = "中午好👋")
-          : 14 < e && e <= 18
-          ? (t = "下午好👋")
-          : 18 < e && e <= 24 && (t = "晚上好👋"),
-        t
-      );
+      var hour = new Date().getHours(),
+        greeting = "";
+      if (0 <= hour && hour < 5) {
+        greeting = "Good night 😴";
+      } else if (5 <= hour && hour < 12) {
+        greeting = "Good morning 👋";
+      } else if (12 <= hour && hour < 18) {
+        greeting = "Good afternoon 👋";
+      } else if (18 <= hour && hour <= 24) {
+        greeting = "Good evening 👋";
+      }
+      return greeting;
     };
-    $sayhiEl && ($sayhiEl.innerHTML = getTimeState() + "！我是");
+    if ($sayHiEl) {
+      $sayHiEl.innerHTML = getTimeState() + "! I am";
+    }
   },
   // 友链注入预设评论
   addFriendLink() {
