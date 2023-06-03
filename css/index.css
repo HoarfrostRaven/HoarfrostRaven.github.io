@@ -5888,6 +5888,7 @@ h1.page-title + .tag-cloud-list {
   font-family: 'Kalam', sans-serif;
 }
 #aside-content > .card-widget.card-info .author-info__name {
+  text-align: center;
   line-height: 1.5em;
   margin: 4px 0;
   font-family: 'Kalam', sans-serif;
