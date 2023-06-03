@@ -5892,6 +5892,7 @@ h1.page-title + .tag-cloud-list {
 }
 #aside-content > .card-widget.card-info .author-info__description {
   font-family: 'Kalam', sans-serif;
+  text-align: center;
 }
 #aside-content > .card-widget.card-info .author-info__name {
   text-align: center;
@@ -5900,7 +5901,7 @@ h1.page-title + .tag-cloud-list {
   font-family: 'Kalam', sans-serif;
 }
 #aside-content > .card-widget.card-info #author-info__sayhi {
-  text-align: left;
+  text-align: center;
   background: var(--anzhiyu-white-op);
   color: var(--font-color);
   border: var(--style-border);
