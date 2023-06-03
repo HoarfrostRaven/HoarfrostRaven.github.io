@@ -589,12 +589,12 @@ const anzhiyu = {
       anzhiyu.musicBindEvent();
       anzhiyu_musicFirst = true;
     }
-    let msgPlay = '<i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span>';
-    let msgPause = '<i class="anzhiyufont anzhiyu-icon-pause"></i><span>暂停音乐</span>';
+    let msgPlay = '<i class="anzhiyufont anzhiyu-icon-play"></i><span>Play</span>';
+    let msgPause = '<i class="anzhiyufont anzhiyu-icon-pause"></i><span>Pause</span>';
     if (anzhiyu_musicPlaying) {
       navMusicEl.classList.remove("playing");
       document.getElementById("menu-music-toggle").innerHTML = msgPlay;
-      document.getElementById("nav-music-hoverTips").innerHTML = "音乐已暂停";
+      document.getElementById("nav-music-hoverTips").innerHTML = "Paused";
       document.querySelector("#consoleMusic").classList.remove("on");
       anzhiyu_musicPlaying = false;
       navMusicEl.classList.remove("stretch");
@@ -645,9 +645,9 @@ const anzhiyu = {
     const menuDarkmodeText = document.querySelector(".menu-darkmode-text");
 
     if (theme === "light") {
-      menuDarkmodeText.textContent = "深色模式";
+      menuDarkmodeText.textContent = "Dark";
     } else {
-      menuDarkmodeText.textContent = "浅色模式";
+      menuDarkmodeText.textContent = "Light";
     }
   },
 
