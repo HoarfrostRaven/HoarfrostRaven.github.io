@@ -5884,6 +5884,9 @@ h1.page-title + .tag-cloud-list {
   background: #fff url("/img/default_covers/0.jpg") top -24% center no-repeat;
   position: relative;
 }
+#aside-content > .card-widget.card-info .author-info__description {
+  font-family: 'Pattaya', sans-serif;
+}
 #aside-content > .card-widget.card-info .author-info__name {
   line-height: 1.5em;
   margin: 4px 0;
