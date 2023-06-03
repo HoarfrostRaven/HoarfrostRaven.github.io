@@ -5883,6 +5883,12 @@ h1.page-title + .tag-cloud-list {
 #aside-content > .card-widget.card-info {
   background: #fff url("/img/card_author_bg.webp") top -24% center no-repeat;
   position: relative;
+  -webkit-box-align: center;
+  -moz-box-align: center;
+  -o-box-align: center;
+  -ms-flex-align: center;
+  -webkit-align-items: center;
+  align-items: center;
 }
 #aside-content > .card-widget.card-info .author-info__description {
   font-family: 'Kalam', sans-serif;
