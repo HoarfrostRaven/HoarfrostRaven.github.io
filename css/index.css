@@ -5905,7 +5905,6 @@ h1.page-title + .tag-cloud-list {
   border-radius: 12px;
   width: fit-content;
   display: inline;
-  margin-left: -1px;
 }
 #aside-content > .card-widget.card-info .banner-button-group .banner-button {
   border-radius: 12px;
