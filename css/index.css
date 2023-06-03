@@ -15071,6 +15071,9 @@ body[data-type="about"] #web_bg {
 .author-content-item-group.column.map {
   width: 59%;
 }
+.author-content-item-group.column.maxim {
+  width: 39%;
+}
 .author-content-item.map:hover {
   background-size: 101%;
   transition: 1s ease-in-out;
