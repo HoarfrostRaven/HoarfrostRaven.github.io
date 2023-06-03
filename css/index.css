@@ -5885,12 +5885,12 @@ h1.page-title + .tag-cloud-list {
   position: relative;
 }
 #aside-content > .card-widget.card-info .author-info__description {
-  font-family: 'Pattaya', sans-serif;
+  font-family: 'Kalam', sans-serif;
 }
 #aside-content > .card-widget.card-info .author-info__name {
   line-height: 1.5em;
   margin: 4px 0;
-  font-family: 'Pattaya', sans-serif;
+  font-family: 'Kalam', sans-serif;
 }
 #aside-content > .card-widget.card-info #author-info__sayhi {
   text-align: left;
