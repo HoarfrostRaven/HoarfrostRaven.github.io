@@ -5883,12 +5883,6 @@ h1.page-title + .tag-cloud-list {
 #aside-content > .card-widget.card-info {
   background: #fff url("/img/card_author_bg.webp") top -24% center no-repeat;
   position: relative;
-  -webkit-box-align: center;
-  -moz-box-align: center;
-  -o-box-align: center;
-  -ms-flex-align: center;
-  -webkit-align-items: center;
-  align-items: center;
 }
 #aside-content > .card-widget.card-info .author-info__description {
   font-family: 'Kalam', sans-serif;
@@ -5901,12 +5895,12 @@ h1.page-title + .tag-cloud-list {
   font-family: 'Kalam', sans-serif;
 }
 #aside-content > .card-widget.card-info #author-info__sayhi {
-  text-align: center;
+  text-align: left;
   background: var(--anzhiyu-white-op);
   color: var(--font-color);
   border: var(--style-border);
   font-size: 12px;
-  margin-right: auto;
+  margin: auto;
   padding: 5px 8px;
   border-radius: 12px;
   width: fit-content;
