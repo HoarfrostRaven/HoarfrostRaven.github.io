@@ -15249,6 +15249,11 @@ body[data-type="about"] #web_bg {
   transition: 0.8s;
   max-width: none;
   border-radius: 0px;
+  opacity: 0.8;
+  transition: opacity 0.8s, 0.8s;
+}
+.author-content-item.movie-content .movie-item:hover .movie-item-cover img {
+  opacity: 1;
 }
 .author-content-item.movie-content::after {
   box-shadow: 0 -48px 203px 11px #fbe9b8 inset;
