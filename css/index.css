@@ -14931,6 +14931,7 @@ body[data-type="about"] #web_bg {
   cursor: pointer;
   border-bottom: 0 !important;
   padding-right: 20px;
+  opacity: 0.4;
 }
 .author-content-item .card-content .banner-button-group .banner-button i,
 .author-content-item .card-content .banner-button-group .banner-button svg {
@@ -14953,6 +14954,7 @@ body[data-type="about"] #web_bg {
   background: var(--anzhiyu-main);
   color: var(--anzhiyu-white);
   border-radius: 20px !important;
+  opacity: 1;
 }
 .author-content-item .card-content .banner-button-group .banner-button:hover i,
 .author-content-item .card-content .banner-button-group .banner-button:hover svg .author-content-item.personalities {
