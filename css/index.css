@@ -15232,8 +15232,8 @@ body[data-type="about"] #web_bg {
 }
 
 .author-content-item.comic-content .comic-item:hover .comic-item-cover {
-  left: 1%;
-  transform: skew(10deg, 0deg) scale(1.2);
+  left: 5%;
+  transform: skew(10deg, 0deg) scale(1.4);
 }
 .author-content-item.comic-content .comic-item .comic-item-cover {
   position: absolute;
