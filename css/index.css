@@ -15232,7 +15232,7 @@ body[data-type="about"] #web_bg {
 }
 
 .author-content-item.comic-content .comic-item:hover .comic-item-cover {
-  left: 16%;
+  left: 5%;
   transform: skew(10deg, 0deg) scale(1.2);
 }
 .author-content-item.comic-content .comic-item .comic-item-cover {
