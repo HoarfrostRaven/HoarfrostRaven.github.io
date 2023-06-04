@@ -15249,7 +15249,7 @@ body[data-type="about"] #web_bg {
   transition: 0.8s;
   max-width: none;
   border-radius: 0px;
-  opacity: 0.8;
+  opacity: 0.4;
   transition: opacity 0.8s, 0.8s;
 }
 .author-content-item.movie-content .movie-item:hover .movie-item-cover img {
