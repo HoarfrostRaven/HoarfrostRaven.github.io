@@ -15196,13 +15196,13 @@ body[data-type="about"] #web_bg {
   left: 0;
 }
 
-.author-content-item.comic-content {
+.author-content-item.movie-content {
   width: 32%;
   min-height: 300px;
   overflow: hidden;
 }
 
-.author-content-item.comic-content .comic-box {
+.author-content-item.movie-content .movie-box {
   display: flex;
   width: 120%;
   height: 100%;
@@ -15211,13 +15211,13 @@ body[data-type="about"] #web_bg {
   top: 0;
   transform: translateX(-50%);
 }
-.author-content-item.comic-content .author-content-item-tips,
-.author-content-item.comic-content .author-content-item-title {
+.author-content-item.movie-content .author-content-item-tips,
+.author-content-item.movie-content .author-content-item-title {
   z-index: 2;
   color: var(--anzhiyu-white);
   pointer-events: none;
 }
-.author-content-item.comic-content .comic-item {
+.author-content-item.movie-content .movie-item {
   height: 100%;
   color: white;
   width: 20%;
@@ -15227,15 +15227,15 @@ body[data-type="about"] #web_bg {
   overflow: hidden;
 }
 
-.author-content-item.comic-content .comic-item:hover {
+.author-content-item.movie-content .movie-item:hover {
   width: 46%;
 }
 
-.author-content-item.comic-content .comic-item:hover .comic-item-cover {
+.author-content-item.movie-content .movie-item:hover .movie-item-cover {
   left: 5%;
   transform: skew(10deg, 0deg) scale(1.4);
 }
-.author-content-item.comic-content .comic-item .comic-item-cover {
+.author-content-item.movie-content .movie-item .movie-item-cover {
   position: absolute;
   top: 0;
   left: -50%;
@@ -15244,13 +15244,13 @@ body[data-type="about"] #web_bg {
   object-fit: cover;
   transition: scale 0.2s, all 0.8s;
 }
-.author-content-item.comic-content .comic-item .comic-item-cover img {
+.author-content-item.movie-content .movie-item .movie-item-cover img {
   height: 100%;
   transition: 0.8s;
   max-width: none;
   border-radius: 0px;
 }
-.author-content-item.comic-content::after {
+.author-content-item.movie-content::after {
   box-shadow: 0 -48px 203px 11px #fbe9b8 inset;
   position: absolute;
   content: "";
