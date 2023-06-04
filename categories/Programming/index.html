@@ -63,7 +63,7 @@
   isHome: false,
   isHighlightShrink: true,
   isToc: false,
-  postUpdate: '2023-06-04 22:43:21'
+  postUpdate: '2023-06-04 22:52:34'
 }</script><noscript><style type="text/css">
   #nav {
     opacity: 1
@@ -193,15 +193,15 @@
       </a>
     </div>
     
-    <div class="catalog-list-item" id="/categories/Programming/">
-      <a href="/categories/Programming/">
-        Programming
-      </a>
-    </div>
-    
     <div class="catalog-list-item" id="/categories/Deep-Learning/">
       <a href="/categories/Deep-Learning/">
         Deep Learning
+      </a>
+    </div>
+    
+    <div class="catalog-list-item" id="/categories/Programming/">
+      <a href="/categories/Programming/">
+        Programming
       </a>
     </div>
     
@@ -786,8 +786,10 @@ rm.rightmenuCopyText = function (txt) {
   rm.hideRightMenu();
 };
 
-rm.copyPageUrl = function () {
-  var url = window.location.href;
+rm.copyPageUrl = function (url) {
+  if (!url) {
+    url = window.location.href;
+  }
   rm.copyUrl(url);
   anzhiyu.snackbarShow("复制本页链接地址成功", false, 2000);
   rm.hideRightMenu();
