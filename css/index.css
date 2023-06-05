@@ -15622,7 +15622,7 @@ body[data-type="about"] #web_bg {
 }
 .author-content-item.careers .careers-group {
   margin-top: 12px;
-  columns: auto 3em;
+  column-count: 2;
   column-gap: 20px;
 }
 .author-content-item.careers .careers-item {
