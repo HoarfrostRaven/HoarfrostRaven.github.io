@@ -15625,8 +15625,7 @@ body[data-type="about"] #web_bg {
 }
 .author-content-item.careers .careers-item {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
 }
 .author-content-item.careers .careers-item .circle {
   width: 16px;
