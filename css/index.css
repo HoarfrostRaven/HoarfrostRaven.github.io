@@ -15334,26 +15334,14 @@ body[data-type="about"] #web_bg {
   overflow: hidden;
   opacity: 0;
   transition: opacity 1s ease-out;
-}
-
-.author-content-item.game-playing .game-icon::before {
-  content: "";
-  background: inherit;
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  transform: scale(0);
-  transition: transform 1s ease-out;
+  mask-image: radial-gradient(circle, black 100%, transparent 100%);
+  mask-size: 0%;
+  transition: opacity 1s ease-out, mask-size 1s ease-out;
 }
 
 .author-content-item.game-playing:hover .game-icon {
   opacity: 1;
-}
-
-.author-content-item.game-playing:hover .game-icon::before {
-  transform: scale(1);
+  mask-size: 200%;
 }
 
 .author-content-item.movie-content {
