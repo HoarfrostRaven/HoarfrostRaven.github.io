@@ -15622,6 +15622,8 @@ body[data-type="about"] #web_bg {
 }
 .author-content-item.careers .careers-group {
   margin-top: 12px;
+  columns: auto 3em;
+  column-gap: 20px;
 }
 .author-content-item.careers .careers-item {
   display: flex;
