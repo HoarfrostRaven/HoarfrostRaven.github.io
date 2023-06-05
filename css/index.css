@@ -15325,6 +15325,36 @@ body[data-type="about"] #web_bg {
   left: 0;
 }
 
+.author-content-item.game-playing .game-icon {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 30%;
+  height: auto;
+  overflow: hidden;
+  opacity: 0;
+}
+
+.author-content-item.game-playing .game-icon::before {
+  content: "";
+  background: inherit;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transform: scale(0);
+  transition: transform 1s ease-out, opacity 1s ease-out;
+}
+
+.author-content-item.game-playing .card-content:hover .game-icon {
+  opacity: 1;
+}
+
+.author-content-item.game-playing .card-content:hover .game-icon::before {
+  transform: scale(1);
+}
+
 .author-content-item.movie-content {
   width: 32%;
   min-height: 300px;
