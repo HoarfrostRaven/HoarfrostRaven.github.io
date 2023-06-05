@@ -15344,6 +15344,10 @@ body[data-type="about"] #web_bg {
   mask-size: 200%;
 }
 
+.author-content-item .content-bottom .tips.game-playing-uid {
+  margin-left: auto;
+}
+
 .author-content-item.movie-content {
   width: 32%;
   min-height: 300px;
