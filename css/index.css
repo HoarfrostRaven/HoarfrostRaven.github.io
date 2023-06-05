@@ -15324,14 +15324,10 @@ body[data-type="about"] #web_bg {
   overflow: hidden;
   opacity: 0;
   transition: opacity 1s ease-out;
-  mask-image: radial-gradient(circle, black 100%, transparent 100%);
-  mask-size: 0%;
-  transition: opacity 1s ease-out, mask-size 1s ease-out;
 }
 
 .author-content-item.game-playing:hover .game-icon {
   opacity: 1;
-  mask-size: 200%;
 }
 
 .author-content-item .content-bottom .tips.game-playing-uid {
