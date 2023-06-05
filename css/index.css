@@ -15304,16 +15304,6 @@ body[data-type="about"] #web_bg {
   align-items: center;
   justify-content: space-between;
 }
-.author-content-item .content-bottom .icon-group {
-  display: flex;
-  position: relative;
-}
-.author-content-item .content-bottom .icon-group i {
-  display: inline-block;
-  width: 143px;
-  height: 18px;
-  margin-right: 0.5rem;
-}
 
 .author-content-item.game-playing::after {
   box-shadow: 0 -69px 203px 11px #575d8b inset;
