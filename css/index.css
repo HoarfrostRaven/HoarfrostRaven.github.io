@@ -15563,6 +15563,9 @@ body[data-type="about"] #web_bg {
   width: 100%;
   transition: .6s;
 }
+.clickable {
+  cursor: pointer;
+}
 .hello-about {
   margin: 20px auto;
   border-radius: 24px;
