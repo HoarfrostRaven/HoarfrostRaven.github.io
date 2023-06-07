@@ -9648,12 +9648,6 @@ blockquote {
 #post .post-copyright .post-copyright-info a:hover {
   text-decoration: none;
 }
-#post .post-copyright .post-copyright-link {
-  padding-left: 6px;
-}
-#post .post-copyright .post-copyright-link a:hover {
-  text-decoration: none;
-}
 #post .post-copyright .post-copyright__type {
   display: -webkit-box;
   display: -moz-box;
