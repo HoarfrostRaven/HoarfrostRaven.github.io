@@ -9640,6 +9640,7 @@ blockquote {
   min-width: 75px;
 }
 #post .post-copyright .post-copyright-info {
+  position: absolute;
   padding-left: 6px;
   z-index: 2;
 }
