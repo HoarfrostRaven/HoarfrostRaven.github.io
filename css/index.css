@@ -16422,7 +16422,7 @@ html.hide-aside .layout > div:first-child {
   }
 }
 
-#aside-content .card-widget#card-wechat {
+/* #aside-content .card-widget#card-wechat {
   background: #57bd6a;
   display: flex;
   justify-content: center;
@@ -16474,7 +16474,7 @@ html.hide-aside .layout > div:first-child {
 #flip-wrapper:hover #flip-content {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
-}
+} */
 
 /* 分类目录条、标签目录条 */
 #catalog-bar {
@@ -16648,7 +16648,7 @@ a.catalog-more:hover {
 }
 
 /*和风天气 */
-#he-plugin-simple {
+/* #he-plugin-simple {
   z-index: 92;
   transition: 0.3s;
   position: fixed !important;
@@ -16783,7 +16783,7 @@ body:has(.post-bg) #he-plugin-simple .s-sticker div {
   #he-plugin-simple {
     left: 262px !important;
   }
-}
+} */
 
 #article-container ol,
 #article-container ul {
@@ -16961,7 +16961,7 @@ details .content > *:nth-child(1) {
   margin-top: 0;
 }
 
-.comment-barrage {
+/* .comment-barrage {
   position: fixed;
   bottom: 0;
   right: 20px;
@@ -17114,7 +17114,7 @@ details .content > *:nth-child(1) {
     transform: translateY(20px);
     opacity: 0;
   }
-}
+} */
 
 /* 中控台 */
 #console {
@@ -18078,7 +18078,7 @@ body:has(#console.show) #nav-music .aplayer .aplayer-lrc .aplayer-lrc-contents {
   }
 }
 /* 歌词超出文本滚动动画 */
-@keyframes an-text-roll {
+/* @keyframes an-text-roll {
   from {
     margin-left: 0;
   }
@@ -18086,7 +18086,7 @@ body:has(#console.show) #nav-music .aplayer .aplayer-lrc .aplayer-lrc-contents {
     margin-left: 100%;
     transform: translateX(-100%);
   }
-}
+} */
 
 body[data-type="essay"] #page {
   border: 0;
