@@ -18905,7 +18905,7 @@ div#archive {
 }
 
 /* 顶部样式 */
-.fcircle_page .author-content.fcirclePage {
+/* .fcircle_page .author-content.fcirclePage {
   height: 19rem;
   color: var(--anzhiyu-white);
   overflow: hidden;
@@ -18935,10 +18935,10 @@ body[data-type="fcircle"] #page {
 .fcircle_page .cf-article-avatar a:hover {
   background: none !important;
   color: var(--anzhiyu-fontcolor) !important;
-}
+} */
 /* 随机文章样式 */
 
-.title-h2-a {
+/* .title-h2-a {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -18998,7 +18998,7 @@ body[data-type="fcircle"] #page {
 }
 .fcircle_page .fish-pond-item .cf-article .cf-article-title {
   line-height: 2;
-}
+} */
 
 /* #greetingBox {
   position: fixed;
