@@ -19000,10 +19000,10 @@ body[data-type="fcircle"] #page {
   line-height: 2;
 }
 
-#greetingBox {
+/* #greetingBox {
   position: fixed;
   top: 10px;
-  left: 50%;
+  left: 15%;
   width: 400px;
   text-align: center;
   z-index: 999;
@@ -19027,7 +19027,7 @@ body[data-type="fcircle"] #page {
 #greeting.shown {
   opacity: 1;
   top: 0;
-}
+} */
 
 /* 首页分类框展示 */
 .categoryGroup {
