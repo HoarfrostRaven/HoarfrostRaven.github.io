@@ -9641,10 +9641,10 @@ blockquote {
 }
 #post .post-copyright .post-copyright-info {
   padding-left: 6px;
+  z-index: 2;
 }
 #post .post-copyright .post-copyright-info a {
   word-break: break-word;
-  z-index: 2;
 }
 #post .post-copyright .post-copyright-info a:hover {
   text-decoration: none;
