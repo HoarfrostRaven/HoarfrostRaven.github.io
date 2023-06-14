@@ -1,0 +1,621 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Note on Introduction to Game Design, Prototyping, and Development | B612</title><meta name="keywords" content="Game Design"><meta name="author" content="Lucas Ye"><meta name="copyright" content="Lucas Ye"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#18171d"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Note on Introduction to Game Design, Prototyping, and Development"><meta name="application-name" content="Note on Introduction to Game Design, Prototyping, and Development"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#18171d"><meta name="description" content="像游戏设计师一样思考游戏的定义不同大神的定义：  Sid Merier：游戏是一系列有趣的选择  玩家有多个可行的选择 每个选择皆有利弊，难以取舍 每个选择的结果在某种程度上都是可预测的但并不绝对  游戏的平衡性并不代表绝对公平，而是追求一种感性的平衡。如果玩家掌握了最优解，会导致游戏寿命迅速缩减。  Trracy Fullerton：游戏是一个闭合且规范的（动态）系统，玩家参与到结构化的冲突当中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Note on Introduction to Game Design, Prototyping, and Development">
+<meta property="og:url" content="https://hoarfrostraven.github.io/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/index.html">
+<meta property="og:site_name" content="B612">
+<meta property="og:description" content="像游戏设计师一样思考游戏的定义不同大神的定义：  Sid Merier：游戏是一系列有趣的选择  玩家有多个可行的选择 每个选择皆有利弊，难以取舍 每个选择的结果在某种程度上都是可预测的但并不绝对  游戏的平衡性并不代表绝对公平，而是追求一种感性的平衡。如果玩家掌握了最优解，会导致游戏寿命迅速缩减。  Trracy Fullerton：游戏是一个闭合且规范的（动态）系统，玩家参与到结构化的冲突当中">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hoarfrostraven.github.io/img/default_covers/16.jpg">
+<meta property="article:published_time" content="2023-06-14T18:40:29.000Z">
+<meta property="article:modified_time" content="2023-06-14T18:42:04.007Z">
+<meta property="article:author" content="Lucas Ye">
+<meta property="article:tag" content="Game Design">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hoarfrostraven.github.io/img/default_covers/16.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hoarfrostraven.github.io/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/"><link rel="preconnect" href="//npm.elemecdn.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="var(--anzhiyu-main)"/><link rel="mask-icon" href="/img/siteicon/apple-icon-180.png" color="#5bbad5"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicon/apple-icon-180.png"/><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/siteicon/apple-icon-180.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicon/16.png"/><link rel="bookmark" href="/img/siteicon/apple-icon-180.png"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1290-2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2796-1290.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1179-2556.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2556-1179.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><script>if ('serviceWorker' in navigator) {
+  if (navigator.serviceWorker.controller) {
+    navigator.serviceWorker.addEventListener('controllerchange', function() {
+      location.reload()
+    })
+  }
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js')
+  })
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@6.3.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@4.0.31/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  friends_vue_info: undefined,
+  navMusic: false,
+  changeMainColorPost: undefined,
+  algolia: {"appId":"3N41NZW8GX","apiKey":"11352f4414174ffad35af634f05cd27d","indexName":"my-hexo-blog","hits":{"per_page":6},"languages":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}.","hits_stats":"${hits} results found in ${time} ms"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#3b70fc","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://npm.elemecdn.com/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Note on Introduction to Game Design, Prototyping, and Development',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-06-14 20:42:04'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="web_box"><div id="web_container"><div id="menu-mask"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/"><div class="title">B612</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-book faa-tada" style="font-size: 0.9em;"></i><span> Article</span></a><ul class="menus_item_child" style="left:-79px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> Archives</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> Categories</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> Tags</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> About</span></a></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> Search</span></a></div><div class="nav-button" id="darkmode_navswitch"><a class="darkmode_switchbutton" type="button" href="javascript:void(0);" title="Switch Between Light And Dark Mode" onclick="anzhiyu.switchDarkMode()"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke" style="font-size: 1.3rem"></i></a></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">Original</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Game-Design/">Game Design</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Game-Design/"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Game Design</span></a></span></div></div><h1 class="post-title">Note on Introduction to Game Design, Prototyping, and Development</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="post-meta-icon anzhiyufont anzhiyu-icon-calendar-days"></i><span class="post-meta-label">Created</span><time datetime="2023-06-14T18:40:29.000Z" title="Created 2023-06-14 20:40:29">2023-06-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">Word count:</span><span class="word-count" title="文章字数">1.7k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">Reading time:</span><span>4min</span></span><span class="post-meta-separator"></span><span id="" data-flag-title="Note on Introduction to Game Design, Prototyping, and Development"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">Post View:</span><span id="twikoo_visitors" title="评论数"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为Paris"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>Paris</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/#post-comment"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/default_covers/16.jpg"></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="像游戏设计师一样思考"><a href="#像游戏设计师一样思考" class="headerlink" title="像游戏设计师一样思考"></a>像游戏设计师一样思考</h2><h3 id="游戏的定义"><a href="#游戏的定义" class="headerlink" title="游戏的定义"></a>游戏的定义</h3><p><strong>不同大神的定义</strong>：</p>
+<ol>
+<li><p>Sid Merier：游戏是一系列有趣的选择</p>
+<ol>
+<li>玩家有多个可行的选择</li>
+<li>每个选择皆有利弊，难以取舍</li>
+<li>每个选择的结果在某种程度上都是可预测的但并不绝对</li>
+</ol>
+<p>游戏的平衡性并不代表绝对公平，而是追求一种感性的平衡。如果玩家掌握了最优解，会导致游戏寿命迅速缩减。</p>
+</li>
+<li><p>Trracy Fullerton：游戏是一个闭合且规范的（动态）系统，玩家参与到结构化的冲突当中，以不平衡的结局消解系统的不确定性</p>
+<ol>
+<li>游戏的形式元素：规则、步骤、玩家、资源、目标、限制、冲突、结局</li>
+<li>动态系统：随着游戏进行而进化的交互方式</li>
+<li>冲突结构：玩家与其他人交互的方式</li>
+<li>不确定性：随机性、确定性和玩家策略间的相互作用</li>
+<li>不平衡的结局：游戏结束的方式，玩家的输赢</li>
+</ol>
+</li>
+<li><p>Jesse Schell：游戏是一种以娱乐的态度解决问题的活动</p>
+</li>
+<li><p>Keith Burgun：玩家通过做出模糊和自发的重要决定对抗一套规则体系</p>
+</li>
+</ol>
+<p><strong>自我定义</strong>：游戏是设计师向玩家传递情感体验的媒介。开发者通过把规则具像化形成游戏，玩家在游玩游戏的过程中会产生情感体验。</p>
+<p><strong>认清游戏的定义的意义</strong>：</p>
+<ol>
+<li>帮助游戏设计师理解人们玩游戏的动机</li>
+<li>帮助游戏设计师理解游戏的核心和边界</li>
+<li>有利于游戏设计师之间的交流</li>
+</ol>
+<h3 id="游戏设计过程"><a href="#游戏设计过程" class="headerlink" title="游戏设计过程"></a>游戏设计过程</h3><p>游戏设计过程中要考虑的问题：</p>
+<ol>
+<li>游戏难度对于目标受众是否合适</li>
+<li>游戏结果靠运气还是策略</li>
+<li>游戏随机性占比</li>
+<li>一旦有玩家占有优势，其他玩家是否难以翻盘（负反馈机制）</li>
+<li>在你的回合以外，游戏是否仍然有趣</li>
+</ol>
+<p>迭代设计过程：</p>
+<ol>
+<li>逐渐修改规则，每次测试后修改一些内容</li>
+<li>测试新规则</li>
+<li>分析新规则是如何影响游戏体验的</li>
+<li>按照想要的方向设计新的规则</li>
+<li>回到步骤一不断重复直到满意</li>
+</ol>
+<h2 id="游戏分析框架"><a href="#游戏分析框架" class="headerlink" title="游戏分析框架"></a>游戏分析框架</h2><p>常见的游戏分析框架有：</p>
+<ol>
+<li>MDA：MDA 分别代表机制（Mechanics）、动态（Dynamics）和美学（Asthetics）。这是专业设计师最熟知的框架，对于游戏设计师和玩家之间的关系颇有研究</li>
+<li>FDD：FDD 分别代表形式（Formal）、戏剧（Dramatic）和动态元素（DynamicElement）。在《游戏设计梦工厂》中被提出，专注于游戏分析，帮助游戏设计师改进游戏和打磨创意，从而提高游戏设计效率。该框架与电影学有关。</li>
+<li>四元法（Elemental Tetrad）：在《游戏设计艺术》中被提出，以开发者角度看待游戏，把游戏分为四个内嵌元素：机制、美学、剧情和技术。</li>
+<li>分层四元法：在《游戏设计、原型与开发》中被提出，帮助游戏设计师了解、创作和分析游戏，从而能更全面地审视自己的游戏。</li>
+</ol>
+<h3 id="MDA"><a href="#MDA" class="headerlink" title="MDA"></a>MDA</h3><p><strong>机制（Mechanics）</strong>：游戏数据层面上的组件和算法</p>
+<p><strong>动态（Dynamics）</strong>：影响玩家输入和其他输入的实时行为</p>
+<p><strong>美学（Asthetics）</strong>：玩家和游戏系统交互时，应当唤起的情绪反应</p>
+<h3 id="FDD"><a href="#FDD" class="headerlink" title="FDD"></a>FDD</h3><p><strong>形式（Formal）</strong>：包括以下七种元素，其中规则是游戏的骨架，它能够把游戏和其它媒体区分开来</p>
+<ol>
+<li>玩家交互模式：单人、solo 还是多人对抗</li>
+<li>目标：玩家获胜的方式</li>
+<li>规则：限制玩家行动方式，不一定会被明确说明</li>
+<li>过程：玩家在游戏中的行为</li>
+<li>资源：游戏中有价值的各种元素</li>
+<li>边界：游戏和现实的边界</li>
+<li>结局：游戏结束的方式</li>
+</ol>
+<p><strong>戏剧（Dramatic）</strong>：游戏的剧情，包括以下三部分。戏剧元素可以帮助玩家理解规则，促使玩家和游戏产生情感共鸣，从而更投入游戏</p>
+<ol>
+<li>前提：游戏世界的背景故事，为游戏叙事打下基础</li>
+<li>角色：故事中的人物，是玩家的代言人</li>
+<li>戏剧：游戏的情节，包含了整个游戏过程的叙事内容</li>
+</ol>
+<p><strong>动态元素（DynamicElement）</strong>：游玩过程中发生变化的东西，包括决策、行为和游戏实体间的关系，动态元素的核心如下。</p>
+<ol>
+<li>涌现：简单规则的碰撞可以导致难以预期的结果，游戏设计师最重要的任务之一就是理解游戏规则的内涵。</li>
+<li>涌现叙事：游戏剧情可能会随着玩家的行为而发生变化，比如《龙与地下城》地下城城主可以根据玩家的不同选择决定故事走向。</li>
+<li>试玩：试玩是唯一理解动态的方式。通过不断测试可以揭示游戏潜藏的动态行为。</li>
+</ol>
+<h3 id="四元法（Elemental-Tetrad）"><a href="#四元法（Elemental-Tetrad）" class="headerlink" title="四元法（Elemental Tetrad）"></a>四元法（Elemental Tetrad）</h3><p>机制：玩家与游戏互动的规则，对应游戏设计师</p>
+<p>美学：五感所接受的游戏内容，对应美术人员</p>
+<p>剧情：对应游戏编剧</p>
+<p>技术：涵盖游戏中用到的所有技术，对应游戏编程人员</p>
+<h3 id="分层四元法"><a href="#分层四元法" class="headerlink" title="分层四元法"></a>分层四元法</h3><p>分层四元法包括三个分层，每个分层又包含四个元素：</p>
+<ol>
+<li><p>内嵌层：设计师和开发者所创造的内容</p>
+<ol>
+<li>机制：玩家与游戏互动的系统，与 FDD 中的形式元素一致</li>
+<li>美学：游戏原声、角色建模、包装和封面等</li>
+<li>叙事：背景、角色、情节</li>
+<li>技术：让游戏运行的所有技术</li>
+</ol>
+</li>
+<li><p>动态层：是游戏的体验所在，玩家拥有部分体验，但总体是在开发者的控制内</p>
+<ol>
+<li>机制：玩家与游戏的互动，动态机制包括过程、策略、游戏的涌现行为和结局</li>
+<li>美学：游戏过程中创造的美学元素（塞尔达的“烟花”，我的世界里的创造）</li>
+<li>叙事：游戏过程中发生的剧情，包括因玩家选择不同而产生的分支剧情和玩家群体间发生的故事</li>
+<li>技术：游戏过程中技术性组件的行为（AI 和随机数）</li>
+</ol>
+</li>
+<li><p>文化层：脱离设计师和开发者的控制，由玩家和社群定义，包含非玩家对游戏的看法和态度</p>
+<ol>
+<li>机制：玩家改变游戏机制</li>
+<li>美学：同人作品</li>
+<li>叙事：同人小说，玩家自制游戏视频中的叙事部分</li>
+<li>技术：非游戏应用以及影响游戏体验的技术</li>
+</ol>
+</li>
+</ol>
+</article><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="Read this article on your phone"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://hoarfrostraven.github.io/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/"></div><div class="reward-dec">Read this article on your phone</div></div></div></div></div></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/Game-Design/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Game Design<span class="tagsPageCount">1</span></a></div></div></div></div></div><div class="post-copyright"><i class="anzhiyufont anzhiyu-icon-copyright"></i><div class="post-copyright__author"><a class="post-copyright__original" title="This article is an original article, please pay attention to the copyright agreement" href="https://hoarfrostraven.github.io/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/">Original</a><a class="post-copyright-title"><span>Note on Introduction to Game Design, Prototyping, and Development</span></a></div><div class="post-copyright-info-box"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"></span><a class="link" href="https://hoarfrostraven.github.io">Lucas Ye</a></div><div class="post-copyright__notice"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a class="link" href="https://hoarfrostraven.github.io/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/">https://hoarfrostraven.github.io/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/06/14/Note-on-SQL/"><img class="prev-cover" src="/img/default_covers/3.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Note on SQL</div></div></a></div><div class="next-post pull-right"><a href="/2023/06/14/Computer-Network-Intro/"><img class="next-cover" src="/img/default_covers/10.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Computer Network: Intro</div></div></a></div></nav><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> Comment</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">Anonymous Comment</a></div><div class="comment-tips" id="comment-tips"><span>You don't need to delete empty lines. Comment directly for the best display effect.</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="author-info-top"> <div class="card-info-avatar"><a class="avatar-img" href="/about"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/about/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div></div><div class="author-info__sayhi" id="author-info__sayhi"></div><h1 class="author-info__name">Lucas Ye</h1><div class="author-info__description">Embrace the Radiance, <br>Discover the Beauty ✨</div><div class="banner-button-group"><a class="banner-button" onclick="pjax.loadUrl(&quot;/about/&quot;)"><span class="banner-button-text">Learn More</span><i class="anzhiyufont anzhiyu-icon-arrow-circle-right" style="font-size: 1.5rem"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%83%8F%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E5%B8%88%E4%B8%80%E6%A0%B7%E6%80%9D%E8%80%83"><span class="toc-number">1.</span> <span class="toc-text">像游戏设计师一样思考</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">1.1.</span> <span class="toc-text">游戏的定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E8%AE%BE%E8%AE%A1%E8%BF%87%E7%A8%8B"><span class="toc-number">1.2.</span> <span class="toc-text">游戏设计过程</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B8%B8%E6%88%8F%E5%88%86%E6%9E%90%E6%A1%86%E6%9E%B6"><span class="toc-number">2.</span> <span class="toc-text">游戏分析框架</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#MDA"><span class="toc-number">2.1.</span> <span class="toc-text">MDA</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FDD"><span class="toc-number">2.2.</span> <span class="toc-text">FDD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9B%9B%E5%85%83%E6%B3%95%EF%BC%88Elemental-Tetrad%EF%BC%89"><span class="toc-number">2.3.</span> <span class="toc-text">四元法（Elemental Tetrad）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E5%B1%82%E5%9B%9B%E5%85%83%E6%B3%95"><span class="toc-number">2.4.</span> <span class="toc-text">分层四元法</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/Computer-Network-Intro/" title="Computer Network: Intro"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Computer Network: Intro"/></a><div class="content"><a class="title" href="/2023/06/14/Computer-Network-Intro/" title="Computer Network: Intro">Computer Network: Intro</a><time datetime="2023-06-14T18:45:17.000Z" title="Created 2023-06-14 20:45:17">2023-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/" title="Note on Introduction to Game Design, Prototyping, and Development"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Note on Introduction to Game Design, Prototyping, and Development"/></a><div class="content"><a class="title" href="/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/" title="Note on Introduction to Game Design, Prototyping, and Development">Note on Introduction to Game Design, Prototyping, and Development</a><time datetime="2023-06-14T18:40:29.000Z" title="Created 2023-06-14 20:40:29">2023-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/Note-on-SQL/" title="Note on SQL"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Note on SQL"/></a><div class="content"><a class="title" href="/2023/06/14/Note-on-SQL/" title="Note on SQL">Note on SQL</a><time datetime="2023-06-14T18:32:52.000Z" title="Created 2023-06-14 20:32:52">2023-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/Note-on-Markdown/" title="Note on Markdown"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/24.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Note on Markdown"/></a><div class="content"><a class="title" href="/2023/06/14/Note-on-Markdown/" title="Note on Markdown">Note on Markdown</a><time datetime="2023-06-14T18:28:06.000Z" title="Created 2023-06-14 20:28:06">2023-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/Note-on-Regular-Expression/" title="Note on Regular Expression"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Note on Regular Expression"/></a><div class="content"><a class="title" href="/2023/06/14/Note-on-Regular-Expression/" title="Note on Regular Expression">Note on Regular Expression</a><time datetime="2023-06-14T18:27:01.000Z" title="Created 2023-06-14 20:27:01">2023-06-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="/lucasetzixun@gmail.com" title="Email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.facebook.com/lucas.oraf.9" title="Facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><img class="footer_mini_logo" title="Back To Top" onclick="anzhiyu.scrollToDest(0, 500)" src="/img/favicon.png" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/HoarfrostRaven" title="GitHub"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.linkedin.com/in/xianzhi-ye-853938229/" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></div><div class="copyright">&copy;2023 By Lucas Ye</div><div id="workboard"><div class="workSituationImg boardsign" id="img" src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-上班摸鱼中.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"></div><div id="runtimeTextTip"></div></div></div></footer></div></div></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="/img/favicon.png"/><div class="loading-image-dot"></div><div id="loading-percentage">0%</div></div></div><script>const loadingPercentage = document.getElementById("loading-percentage");
+let loadingPercentageTimer = setInterval(function() {
+  var progressBar = document.querySelector(".pace-progress");
+  if (!progressBar) return
+  var currentValue = progressBar.getAttribute("data-progress-text");
+  if (currentValue !== loadingPercentage.textContent) {
+    loadingPercentage.textContent = currentValue;
+    if (currentValue === "100%") {
+      clearInterval(loadingPercentageTimer);
+    }
+  }
+}, 100);
+const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+    Pace.restart()
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/progress_bar/progress_bar.css"/><script async="async" src="https://npm.elemecdn.com/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div id="sidebar"><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/about/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">Articles</div><div class="length-num">34</div></a><a href="/tags/" title="tag"><div class="headline">Tags</div><div class="length-num">13</div></a><a href="/categories/" title="category"><div class="headline">Categories</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-book faa-tada" style="font-size: 0.9em;"></i><span> Article</span></a><ul class="menus_item_child" style="left:-79px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> Archives</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> Categories</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> Tags</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> About</span></a></div></div></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@4.0.31/dist/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@5.1.1/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/vanilla-lazyload@17.3.1/dist/lazyload.iife.min.js"></script><script src="https://npm.elemecdn.com/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("05/01/2023 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      img.src = "https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-下班啦.svg";
+      img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+      img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+    }
+
+    currentTimeHtml = `This site has been running for ${dnum} days<span id='runtime'> ${hnum} hours ${mnum} minutes ${snum} seconds </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="https://npm.elemecdn.com/algoliasearch@4.14.2/dist/algoliasearch-lite.umd.js"></script><script src="https://npm.elemecdn.com/instantsearch.js@4.46.1/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3.2.2/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://npm.elemecdn.com/mermaid@9.1.7/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-hoarfrostraven.vercel.app',
+      region: 'ap-paris',
+      onCommentLoaded: function () {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-hoarfrostraven.vercel.app',
+      region: 'ap-paris',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://npm.elemecdn.com/twikoo@1.6.16/dist/twikoo.all.min.js').then(runFn)
+  }
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "visitor@lucas.com";</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script data-pjax>var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+var pageHeaderEl = document.getElementById("page-header");
+var navMusicEl = document.getElementById("nav-music");
+var consoleEl = document.getElementById("console");
+//- // 已随机的歌曲
+//- var selectRandomSong = [];
+//- // 音乐默认声音大小
+//- var musicVolume = 0.8;
+//- // 是否切换了周杰伦音乐列表
+//- var changeMusicListFlag = false;
+//- // 当前默认播放列表
+//- var defaultPlayMusicList = [];
+
+document.getElementById("page-name").innerText = document.title.split(" | B612")[0];
+anzhiyu.initIndexEssay();
+anzhiyu.changeTimeInEssay();
+anzhiyu.removeBodyPaceClass();
+//- anzhiyu.qrcodeCreate();
+//- anzhiyu.changeTimeInAlbumDetail();
+anzhiyu.reflashEssayWaterFall();
+anzhiyu.sayhi();
+anzhiyu.stopImgRightDrag();
+anzhiyu.addNavBackgroundInit();
+anzhiyu.setValueToBodyType();
+anzhiyu.catalogActive();
+anzhiyu.tagsPageActive();
+anzhiyu.categoriesBarActive();
+anzhiyu.topCategoriesBarScroll();
+
+//- anzhiyu.getCustomPlayList();
+anzhiyu.addEventListenerConsoleMusicList(false);
+setTimeout(() => {
+  if (typeof addFriendLinksInFooter === "function") {
+    addFriendLinksInFooter();
+  }
+}, 200)</script><script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>LA.init({id: "3EpO8Rn2LqHqcZrN", ck: "3EpO8Rn2LqHqcZrN"});
+new LingQue.Monitor().init({id: "3EpO8Rn2LqHqcZrN", sendSuspicious:true});</script><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.1.0/icon/ali_iconfont_css.css"><script src="https://npm.elemecdn.com/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>

@@ -1,0 +1,583 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>Note on SQL | B612</title><meta name="keywords" content="Programming,SQL"><meta name="author" content="Lucas Ye"><meta name="copyright" content="Lucas Ye"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#18171d"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="Note on SQL"><meta name="application-name" content="Note on SQL"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#18171d"><meta name="description" content="概述数据库A Database is a collection of data stored in a format that can easily be accessed. 数据库管理系统为了管理数据库，我们要使用数据库管理系统（Database Management System，简称 DBMS）。 我们通过电脑连接上 DBMS，然后通过指令来查询或修改数据。DBMS 将执行指令并返回结果。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Note on SQL">
+<meta property="og:url" content="https://hoarfrostraven.github.io/2023/06/14/Note-on-SQL/index.html">
+<meta property="og:site_name" content="B612">
+<meta property="og:description" content="概述数据库A Database is a collection of data stored in a format that can easily be accessed. 数据库管理系统为了管理数据库，我们要使用数据库管理系统（Database Management System，简称 DBMS）。 我们通过电脑连接上 DBMS，然后通过指令来查询或修改数据。DBMS 将执行指令并返回结果。">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hoarfrostraven.github.io/img/default_covers/3.jpg">
+<meta property="article:published_time" content="2023-06-14T18:32:52.000Z">
+<meta property="article:modified_time" content="2023-06-14T18:33:56.923Z">
+<meta property="article:author" content="Lucas Ye">
+<meta property="article:tag" content="Programming">
+<meta property="article:tag" content="SQL">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hoarfrostraven.github.io/img/default_covers/3.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hoarfrostraven.github.io/2023/06/14/Note-on-SQL/"><link rel="preconnect" href="//npm.elemecdn.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="var(--anzhiyu-main)"/><link rel="mask-icon" href="/img/siteicon/apple-icon-180.png" color="#5bbad5"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicon/apple-icon-180.png"/><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/siteicon/apple-icon-180.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicon/16.png"/><link rel="bookmark" href="/img/siteicon/apple-icon-180.png"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1290-2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2796-1290.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1179-2556.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2556-1179.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><script>if ('serviceWorker' in navigator) {
+  if (navigator.serviceWorker.controller) {
+    navigator.serviceWorker.addEventListener('controllerchange', function() {
+      location.reload()
+    })
+  }
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js')
+  })
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@6.3.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@4.0.31/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  friends_vue_info: undefined,
+  navMusic: false,
+  changeMainColorPost: undefined,
+  algolia: {"appId":"3N41NZW8GX","apiKey":"11352f4414174ffad35af634f05cd27d","indexName":"my-hexo-blog","hits":{"per_page":6},"languages":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}.","hits_stats":"${hits} results found in ${time} ms"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#3b70fc","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://npm.elemecdn.com/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Note on SQL',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: true,
+  isToc: true,
+  postUpdate: '2023-06-14 20:33:56'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="web_box"><div id="web_container"><div id="menu-mask"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/"><div class="title">B612</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-book faa-tada" style="font-size: 0.9em;"></i><span> Article</span></a><ul class="menus_item_child" style="left:-79px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> Archives</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> Categories</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> Tags</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> About</span></a></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> Search</span></a></div><div class="nav-button" id="darkmode_navswitch"><a class="darkmode_switchbutton" type="button" href="javascript:void(0);" title="Switch Between Light And Dark Mode" onclick="anzhiyu.switchDarkMode()"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke" style="font-size: 1.3rem"></i></a></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">Original</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Programming/">Programming</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/Programming/"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>Programming</span></a><a class="article-meta__tags" href="/tags/SQL/"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>SQL</span></a></span></div></div><h1 class="post-title">Note on SQL</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="post-meta-icon anzhiyufont anzhiyu-icon-calendar-days"></i><span class="post-meta-label">Created</span><time datetime="2023-06-14T18:32:52.000Z" title="Created 2023-06-14 20:32:52">2023-06-14</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">Word count:</span><span class="word-count" title="文章字数">2.4k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">Reading time:</span><span>8min</span></span><span class="post-meta-separator"></span><span id="" data-flag-title="Note on SQL"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">Post View:</span><span id="twikoo_visitors" title="评论数"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为Paris"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>Paris</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2023/06/14/Note-on-SQL/#post-comment"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/default_covers/3.jpg"></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><h3 id="数据库"><a href="#数据库" class="headerlink" title="数据库"></a>数据库</h3><p>A Database is a collection of data stored in a format that can easily be accessed.</p>
+<h3 id="数据库管理系统"><a href="#数据库管理系统" class="headerlink" title="数据库管理系统"></a>数据库管理系统</h3><p>为了管理数据库，我们要使用数据库管理系统（Database Management System，简称 DBMS）。</p>
+<p>我们通过电脑连接上 DBMS，然后通过指令来查询或修改数据。DBMS 将执行指令并返回结果。</p>
+<p>DBMS 被分为两大类，Relational 和 Non-Relational，后者又称为 NoSQL。</p>
+<h3 id="关系型数据库管理系统"><a href="#关系型数据库管理系统" class="headerlink" title="关系型数据库管理系统"></a>关系型数据库管理系统</h3><p>在 Relational DBMS（简称 RDBMS） 中，数据被存储在通过某种方式互相联系的表格中。</p>
+<p>每个表格存储特定类型对象的数据，比如客户、订单、产品。</p>
+<p>SQL（Structured Query Language）是我们用来处理关系数据库的语言。</p>
+<p>MySQL 是最出名的 RDBMS，此外还有 SQL Server 和 Oracle 等。</p>
+<p>不同的 DBMS 有不同的风格，但它们的实现都类似，且都基于标准 SQL 规范。</p>
+<h3 id="非关系型数据库管理系统"><a href="#非关系型数据库管理系统" class="headerlink" title="非关系型数据库管理系统"></a>非关系型数据库管理系统</h3><p>在非关系型数据库管理系统中，没有表格或关系，与 RDBMS 非常不同，不予讨论。</p>
+<h2 id="基本操作"><a href="#基本操作" class="headerlink" title="基本操作"></a>基本操作</h2><h3 id="基本界面功能"><a href="#基本界面功能" class="headerlink" title="基本界面功能"></a>基本界面功能</h3><p>左侧的 Administration 栏用于做管理工作，例如启动或停止服务器，导入或导出数据等。</p>
+<p>左侧的 Schemas 栏显示了当前数据库服务器中的数据库，默认情况下只有一个数据库系统 sys，它是供 MySQL 内部使用的。</p>
+<p>中间的主体是查询编辑（Query Editor）窗口，也就是编写代码的地方。</p>
+<p>右侧的窗口先忽视，不用在意。</p>
+<h3 id="构建数据库"><a href="#构建数据库" class="headerlink" title="构建数据库"></a>构建数据库</h3><p>点击左上角第二个图标“Open a SQL script file”，选择对应建库文件（create-databases），然后运行，刷新左侧的 Schemas 栏，就可以得到对应的数据库。</p>
+<p>在每一个数据库中都有以下文件夹：</p>
+<ol>
+<li>Tables：这里是存储数据的地方</li>
+<li>Views：用来存放虚拟的 table，我们可以把多个 table 中的数据组合起来放入 view 中</li>
+<li>Stored Procedures</li>
+<li>Functions</li>
+</ol>
+<p>后两者都是用来存放查询代码的。</p>
+<p>在 Tables 文件夹中，把鼠标移到任意一个 table 上，会在右侧看到三个图标，最右侧的图标允许我们查询这个表的所有内容，中间的图标可以检查和更改每一列的属性。</p>
+<h2 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h2><h3 id="SQL-代码简介"><a href="#SQL-代码简介" class="headerlink" title="SQL 代码简介"></a>SQL 代码简介</h3><p>查看左侧的导航面板，没有一个数据库是粗体显示的，这说明我们还没有选中一个数据库，所以首先我们要选中一个数据库：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store</span><br></pre></td></tr></table></figure>
+<p>SQL 不区分大小写，但我们最好还是保持关键字大写的习惯。</p>
+<p>执行上面代码后，sql_store 数据库就会被粗体显示。</p>
+<p>当然也可以通过鼠标双击来选中数据库。</p>
+<p>SELECT 关键字后可以跟上我们想要查询的列名，以逗号分隔，或者用星号来选去所有的列。</p>
+<p>FROM 后面跟上要查询的表。</p>
+<p>如果有多个查询语句，需要用分号来把它们分隔。</p>
+<p>还可以用 WHERE 关键字来对结果进行过滤。</p>
+<p>利用 ORDER BY 关键字进行排序，DESC 用来表示倒序排列。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="comment">-- 注释</span></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> points <span class="operator">&gt;</span> <span class="number">1000</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> points <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
+<p>关键词的顺序很重要，不然会报错。</p>
+<h3 id="详细讲解-SELECT"><a href="#详细讲解-SELECT" class="headerlink" title="详细讲解 SELECT"></a>详细讲解 SELECT</h3><p>改变 SELECT 关键字后的列名的顺序可以改变结果的顺序。</p>
+<p>SELECT 关键字后可以加算术表达式，包括加减乘除模运算（+，-，*，/，%）等。</p>
+<p>可以利用 AS 关键字给结果取得的列重命名，如果重命名后的列名中包含空格，则应该用引号包起来，单引号双引号都可以。</p>
+<p>为了好的习惯，当处理 String 类型的数据时，无论有没有空格，都最好使用单引号包起来。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	firSt_name <span class="keyword">AS</span> &quot;First name&quot;, </span><br><span class="line">    last_name <span class="keyword">AS</span> <span class="string">&#x27;Last name&#x27;</span>,</span><br><span class="line">    points, </span><br><span class="line">    (points <span class="operator">+</span> <span class="number">100</span>) <span class="operator">*</span> <span class="number">10</span> <span class="keyword">AS</span> discount_factor</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
+<p>查看 customers 表格的所有数据，把第一个客户的 state 从 MA 改为 VA，这样就有两个客户来自同一个 state，然后点击右下角的 Apply，保存修改。</p>
+<p>利用 DISTINCT 关键词可以删除结果中的重复项。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="keyword">DISTINCT</span> state</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br></pre></td></tr></table></figure>
+<h2 id="WHERE"><a href="#WHERE" class="headerlink" title="WHERE"></a>WHERE</h2><p>用 WHERE 关键字可以对结果进行过滤。</p>
+<p>SQL 中的比较运算符有大于（&gt;）、大于等于（&gt;=）、小于（&lt;）、小于等于（&lt;=）、等于（=）、不等于（!= 或 &lt;&gt;）。</p>
+<p>查询时忽略大小写。</p>
+<p>日期类型的数据也要用单引号包起来，标准化的日期格式如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> birth_date <span class="operator">&gt;</span> <span class="string">&#x27;1990-01-01&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="AND-OR-NOT"><a href="#AND-OR-NOT" class="headerlink" title="AND, OR, NOT"></a>AND, OR, NOT</h2><p>AND，OR 和 NOT 分别对应与或非，用于组合条件。</p>
+<p>使用括号比记优先级更好用。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> order_items</span><br><span class="line"><span class="keyword">WHERE</span> order_id <span class="operator">=</span> <span class="number">6</span> <span class="keyword">AND</span> unit_price <span class="operator">*</span> quantity <span class="operator">&gt;</span> <span class="number">30</span></span><br></pre></td></tr></table></figure>
+<h2 id="IN"><a href="#IN" class="headerlink" title="IN"></a>IN</h2><p>IN 可以用来把一个属性和多个值进行比较。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> state <span class="keyword">NOT</span> <span class="keyword">IN</span> (<span class="string">&#x27;VA&#x27;</span>, <span class="string">&#x27;FL&#x27;</span>, <span class="string">&#x27;GA&#x27;</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="BETWEEN"><a href="#BETWEEN" class="headerlink" title="BETWEEN"></a>BETWEEN</h2><p>用于判断某个值是否在某个区间内。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> birth_date <span class="keyword">BETWEEN</span> <span class="string">&#x27;1990-01-01&#x27;</span> <span class="keyword">AND</span> <span class="string">&#x27;2000-01-01&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="LIKE"><a href="#LIKE" class="headerlink" title="LIKE"></a>LIKE</h2><p>用于判断某个值是否与某种模式相符。</p>
+<p>利用百分号 % 匹配任意个字符。</p>
+<p>利用下划线 _ 匹配单个字符。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> address <span class="keyword">LIKE</span> <span class="string">&#x27;%trail%&#x27;</span> <span class="keyword">OR</span> phone <span class="keyword">LIKE</span> <span class="string">&#x27;%9&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="REGEXP"><a href="#REGEXP" class="headerlink" title="REGEXP"></a>REGEXP</h2><p>正则表达式与 LIKE 类似，但在处理类似 <code>&#39;%trail%&#39;</code> 的情况时可以忽略掉 %。</p>
+<p>正则表达式里还有其他符号，比如 ^ 表示 String 的开头，$ 表示 String 的结尾，| 表示关键词的并联。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">&#x27;field$|mac|^rose&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>假设我们想找到名字里面含有字母 e，并且 e 前面有字母 g 或 i 或 m 的用户，可以使用以下方法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">&#x27;[gim]e&#x27;</span></span><br></pre></td></tr></table></figure>
+<p>或者查找名字里面含有字母 e，并且 e 前面有字母 a 到 h 中任意字母的用户，可以用以下方法：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> last_name REGEXP <span class="string">&#x27;[a-h]e&#x27;</span></span><br></pre></td></tr></table></figure>
+<h2 id="IS-NULL"><a href="#IS-NULL" class="headerlink" title="IS NULL"></a>IS NULL</h2><p>用于查找数据为空的项。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">WHERE</span> phone <span class="keyword">IS</span> <span class="keyword">NULL</span></span><br></pre></td></tr></table></figure>
+<p>也可以有 IS NOT NULL。</p>
+<h2 id="ORDER-BY"><a href="#ORDER-BY" class="headerlink" title="ORDER BY"></a>ORDER BY</h2><p>用于将结果排序。</p>
+<p>用 DESC 可以倒序。</p>
+<p>可以跟上多个列名，会依次进行排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> state <span class="keyword">DESC</span>, first_name <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
+<p>还可以使用不在 SELECT 中的列来进行排序，比如说我们只想要用户的名字，但希望结果按照生日排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> first_name, last_name</span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> birth_date</span><br></pre></td></tr></table></figure>
+<p>或者按照 SELECT 中新造的列（算术表达式或重命名得到的新列），或者算术表达式来排序。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> order_items</span><br><span class="line"><span class="keyword">WHERE</span> order_id <span class="operator">=</span> <span class="number">2</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> quantity <span class="operator">*</span> unit_price <span class="keyword">DESC</span></span><br></pre></td></tr></table></figure>
+<h2 id="LIMIT"><a href="#LIMIT" class="headerlink" title="LIMIT"></a>LIMIT</h2><p>用于限制返回结果的数量。</p>
+<p>可以设置偏移量，例如下面代码偏移量为 6，返回数为 3，则会返回第 7、8、9 项数据。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> customers</span><br><span class="line">LIMIT <span class="number">6</span>, <span class="number">3</span></span><br></pre></td></tr></table></figure>
+<p>ORDER BY 和 LIMIT 总是最后的两条语句。</p>
+<h2 id="INNER-JOIN"><a href="#INNER-JOIN" class="headerlink" title="INNER JOIN"></a>INNER JOIN</h2><p>这个命令中 INNER 是可选的，所以使用时可以只写 JOIN。</p>
+<p>利用一下代码，可以把 orders 和 customers 两张表根据 customer_id 连接起来。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> orders</span><br><span class="line"><span class="keyword">JOIN</span> customers </span><br><span class="line">	<span class="keyword">ON</span> orders.customer_id <span class="operator">=</span> customers.customer_id</span><br></pre></td></tr></table></figure>
+<p>需要注意的是，上面代码的结果中 customer_id 这一列会出现两次，因此如果在 SELECT 中选择 customer_id 的话，程序就会报错，因为程序不清楚我们指的是哪一列 customer_id，尽管它们内容相同。因此我们需要在 customer_id 这个列名前加一个前缀指出它来自哪一张表，比如将其改成 <code>orders.customer_id</code>。</p>
+<p>为了减少重复或作区别，我们可以在命令中给表起别名，示例如下：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> order_id, o.customer_id, first_name, last_name</span><br><span class="line"><span class="keyword">FROM</span> orders o</span><br><span class="line"><span class="keyword">JOIN</span> customers c </span><br><span class="line">	<span class="keyword">ON</span> o.customer_id <span class="operator">=</span> c.customer_id</span><br></pre></td></tr></table></figure>
+<h3 id="Joining-across-database"><a href="#Joining-across-database" class="headerlink" title="Joining across database"></a>Joining across database</h3><p>假设 sql_store 数据库中没有 products 这张表，而 sql_inventory 还有一张 products 表。</p>
+<p>现在我们想把 sql_store 数据库中的 order_items 表与 sql_inventory 中的 products 表相连。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> order_items o</span><br><span class="line"><span class="keyword">JOIN</span> sql_inventory.products p </span><br><span class="line">	<span class="keyword">ON</span> o.product_id <span class="operator">=</span> p.product_id</span><br></pre></td></tr></table></figure>
+<p>注意，FROM 后的表应来自 USE 后的数据库，或者给 FROM 后的表加前缀。</p>
+<h3 id="Self-Joins"><a href="#Self-Joins" class="headerlink" title="Self Joins"></a>Self Joins</h3><p>我们要把 sql_hr 数据库中的 employees 表与自己相连。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">USE sql_hr;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> employees e</span><br><span class="line"><span class="keyword">JOIN</span> employees m </span><br><span class="line">	<span class="keyword">ON</span> e.reports_to <span class="operator">=</span> m.employee_id</span><br></pre></td></tr></table></figure>
+<h3 id="Joining-Multiple-Tables"><a href="#Joining-Multiple-Tables" class="headerlink" title="Joining Multiple Tables"></a>Joining Multiple Tables</h3><p>下面代码把 orders，customers 和 order_statuses 三张表连接起来。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> orders o</span><br><span class="line"><span class="keyword">JOIN</span> customers c</span><br><span class="line">	<span class="keyword">ON</span> o.customer_id <span class="operator">=</span> c.customer_id</span><br><span class="line"><span class="keyword">JOIN</span> order_statuses os</span><br><span class="line">	<span class="keyword">ON</span> o.status <span class="operator">=</span> os.order_status_id</span><br></pre></td></tr></table></figure>
+<h3 id="Compound-Join-Conditions-复合联合"><a href="#Compound-Join-Conditions-复合联合" class="headerlink" title="Compound Join Conditions 复合联合"></a>Compound Join Conditions 复合联合</h3><p>当一张表使用的是复合主键时，可以用 AND 把条件关联起来。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> order_items oi</span><br><span class="line"><span class="keyword">JOIN</span> order_item_notes oin</span><br><span class="line">	<span class="keyword">ON</span> oi.order_id <span class="operator">=</span> oin.order_id</span><br><span class="line">    <span class="keyword">AND</span> oi.product_id <span class="operator">=</span> oin.product_id</span><br></pre></td></tr></table></figure>
+<h3 id="Implicit-Join-Syntax-隐式联合"><a href="#Implicit-Join-Syntax-隐式联合" class="headerlink" title="Implicit Join Syntax 隐式联合"></a>Implicit Join Syntax 隐式联合</h3><p>接下来的两种代码获得的结果相同。</p>
+<p>第一种：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> orders o</span><br><span class="line"><span class="keyword">JOIN</span> customers c</span><br><span class="line">	<span class="keyword">ON</span> o.customer_id <span class="operator">=</span> c.customer_id</span><br></pre></td></tr></table></figure>
+<p>第二种：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> orders o, customers c</span><br><span class="line"><span class="keyword">WHERE</span> o.customer_id <span class="operator">=</span> c.customer_id</span><br></pre></td></tr></table></figure>
+<p>第二种就是隐式联合。</p>
+<p>但我们应尽量不这么做，因为如果忘记了使用 WHERE 语句，就会得出错误结果。</p>
+<h2 id="OUTER-JOIN"><a href="#OUTER-JOIN" class="headerlink" title="OUTER JOIN"></a>OUTER JOIN</h2><p>执行以下代码：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span> </span><br><span class="line">	c.customer_id,</span><br><span class="line">  c.first_name,</span><br><span class="line">  o.order_id</span><br><span class="line"><span class="keyword">FROM</span> customers c</span><br><span class="line"><span class="keyword">JOIN</span> orders o</span><br><span class="line">	<span class="keyword">ON</span> c.customer_id <span class="operator">=</span> o.customer_id</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> c.customer_id</span><br></pre></td></tr></table></figure>
+<p>会发现结果中只有有订单的顾客被打印出来了。</p>
+<p>如果在这种情况下想显示所有顾客，就要使用 OUTER JOIN。</p>
+<p>OUTER JOIN 有两种，LEFT JOIN 和 RIGHT JOIN。</p>
+<p>使用 LEFT JOIN 时，左侧表格（FROM 后的表格，本例中为 customers）中的所有数据，无论是否满足 ON 后的条件，都会被返回。</p>
+<p>RIGHT JOIN 则会返回右侧表格中的所有数据。</p>
+<p>一般都使用 LEFT JOIN，避免使用 RIGHT JOIN。</p>
+<h3 id="Outer-Joins-Between-Multiple-Tables"><a href="#Outer-Joins-Between-Multiple-Tables" class="headerlink" title="Outer Joins Between Multiple Tables"></a>Outer Joins Between Multiple Tables</h3><p>与 INNER JOIN 类似，OUTER JOIN 也可以联合多个表。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">USE sql_store;</span><br><span class="line"></span><br><span class="line"><span class="keyword">SELECT</span></span><br><span class="line">	c.customer_id,</span><br><span class="line">    c.first_name,</span><br><span class="line">    o.order_id,</span><br><span class="line">    sh.name <span class="keyword">AS</span> shipper</span><br><span class="line"><span class="keyword">FROM</span> customers c</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> orders o</span><br><span class="line">	<span class="keyword">ON</span> c.customer_id <span class="operator">=</span> o.customer_id</span><br><span class="line"><span class="keyword">LEFT</span> <span class="keyword">JOIN</span> shippers sh</span><br><span class="line">	<span class="keyword">ON</span> o.shipper_id <span class="operator">=</span> sh.shipper_id</span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> c.customer_id</span><br></pre></td></tr></table></figure>
+<p>一般都使用 LEFT JOIN。</p>
+<h3 id="Self-Outer-Joins"><a href="#Self-Outer-Joins" class="headerlink" title="Self Outer Joins"></a>Self Outer Joins</h3></article><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="Read this article on your phone"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://hoarfrostraven.github.io/2023/06/14/Note-on-SQL/"></div><div class="reward-dec">Read this article on your phone</div></div></div></div></div></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/Programming/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>Programming<span class="tagsPageCount">8</span></a><a class="post-meta__box__tags" href="/tags/SQL/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>SQL<span class="tagsPageCount">1</span></a></div></div></div></div></div><div class="post-copyright"><i class="anzhiyufont anzhiyu-icon-copyright"></i><div class="post-copyright__author"><a class="post-copyright__original" title="This article is an original article, please pay attention to the copyright agreement" href="https://hoarfrostraven.github.io/2023/06/14/Note-on-SQL/">Original</a><a class="post-copyright-title"><span>Note on SQL</span></a></div><div class="post-copyright-info-box"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"></span><a class="link" href="https://hoarfrostraven.github.io">Lucas Ye</a></div><div class="post-copyright__notice"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a class="link" href="https://hoarfrostraven.github.io/2023/06/14/Note-on-SQL/">https://hoarfrostraven.github.io/2023/06/14/Note-on-SQL/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-left"><a href="/2023/06/14/Note-on-Markdown/"><img class="prev-cover" src="/img/default_covers/24.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">Note on Markdown</div></div></a></div><div class="next-post pull-right"><a href="/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/"><img class="next-cover" src="/img/default_covers/16.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="pagination-info"><div class="label">Next Post</div><div class="next_info">Note on Introduction to Game Design, Prototyping, and Development</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/06/14/Computer-Network-Intro/" title="Computer Network: Intro"><img class="cover" src="/img/default_covers/10.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-06-14</div><div class="title">Computer Network: Intro</div></div></a></div><div><a href="/2023/06/06/Docker-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Part-1/" title="Docker 学习笔记 - Part 1"><img class="cover" src="/img/default_covers/18.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-06-06</div><div class="title">Docker 学习笔记 - Part 1</div></div></a></div><div><a href="/2023/06/06/Docker-%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0-Part-2/" title="Docker 学习笔记 - Part 2"><img class="cover" src="/img/default_covers/2.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-06-06</div><div class="title">Docker 学习笔记 - Part 2</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> Comment</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">Anonymous Comment</a></div><div class="comment-tips" id="comment-tips"><span>You don't need to delete empty lines. Comment directly for the best display effect.</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="author-info-top"> <div class="card-info-avatar"><a class="avatar-img" href="/about"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/about/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div></div><div class="author-info__sayhi" id="author-info__sayhi"></div><h1 class="author-info__name">Lucas Ye</h1><div class="author-info__description">Embrace the Radiance, <br>Discover the Beauty ✨</div><div class="banner-button-group"><a class="banner-button" onclick="pjax.loadUrl(&quot;/about/&quot;)"><span class="banner-button-text">Learn More</span><i class="anzhiyufont anzhiyu-icon-arrow-circle-right" style="font-size: 1.5rem"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A6%82%E8%BF%B0"><span class="toc-number">1.</span> <span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">1.1.</span> <span class="toc-text">数据库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.2.</span> <span class="toc-text">数据库管理系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.3.</span> <span class="toc-text">关系型数据库管理系统</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9D%9E%E5%85%B3%E7%B3%BB%E5%9E%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%AE%A1%E7%90%86%E7%B3%BB%E7%BB%9F"><span class="toc-number">1.4.</span> <span class="toc-text">非关系型数据库管理系统</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E6%93%8D%E4%BD%9C"><span class="toc-number">2.</span> <span class="toc-text">基本操作</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E6%9C%AC%E7%95%8C%E9%9D%A2%E5%8A%9F%E8%83%BD"><span class="toc-number">2.1.</span> <span class="toc-text">基本界面功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9E%84%E5%BB%BA%E6%95%B0%E6%8D%AE%E5%BA%93"><span class="toc-number">2.2.</span> <span class="toc-text">构建数据库</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SELECT"><span class="toc-number">3.</span> <span class="toc-text">SELECT</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SQL-%E4%BB%A3%E7%A0%81%E7%AE%80%E4%BB%8B"><span class="toc-number">3.1.</span> <span class="toc-text">SQL 代码简介</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E8%AE%B2%E8%A7%A3-SELECT"><span class="toc-number">3.2.</span> <span class="toc-text">详细讲解 SELECT</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WHERE"><span class="toc-number">4.</span> <span class="toc-text">WHERE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AND-OR-NOT"><span class="toc-number">5.</span> <span class="toc-text">AND, OR, NOT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IN"><span class="toc-number">6.</span> <span class="toc-text">IN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BETWEEN"><span class="toc-number">7.</span> <span class="toc-text">BETWEEN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LIKE"><span class="toc-number">8.</span> <span class="toc-text">LIKE</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#REGEXP"><span class="toc-number">9.</span> <span class="toc-text">REGEXP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IS-NULL"><span class="toc-number">10.</span> <span class="toc-text">IS NULL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ORDER-BY"><span class="toc-number">11.</span> <span class="toc-text">ORDER BY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#LIMIT"><span class="toc-number">12.</span> <span class="toc-text">LIMIT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#INNER-JOIN"><span class="toc-number">13.</span> <span class="toc-text">INNER JOIN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Joining-across-database"><span class="toc-number">13.1.</span> <span class="toc-text">Joining across database</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Self-Joins"><span class="toc-number">13.2.</span> <span class="toc-text">Self Joins</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Joining-Multiple-Tables"><span class="toc-number">13.3.</span> <span class="toc-text">Joining Multiple Tables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Compound-Join-Conditions-%E5%A4%8D%E5%90%88%E8%81%94%E5%90%88"><span class="toc-number">13.4.</span> <span class="toc-text">Compound Join Conditions 复合联合</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Implicit-Join-Syntax-%E9%9A%90%E5%BC%8F%E8%81%94%E5%90%88"><span class="toc-number">13.5.</span> <span class="toc-text">Implicit Join Syntax 隐式联合</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#OUTER-JOIN"><span class="toc-number">14.</span> <span class="toc-text">OUTER JOIN</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Outer-Joins-Between-Multiple-Tables"><span class="toc-number">14.1.</span> <span class="toc-text">Outer Joins Between Multiple Tables</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Self-Outer-Joins"><span class="toc-number">14.2.</span> <span class="toc-text">Self Outer Joins</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/Computer-Network-Intro/" title="Computer Network: Intro"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Computer Network: Intro"/></a><div class="content"><a class="title" href="/2023/06/14/Computer-Network-Intro/" title="Computer Network: Intro">Computer Network: Intro</a><time datetime="2023-06-14T18:45:17.000Z" title="Created 2023-06-14 20:45:17">2023-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/" title="Note on Introduction to Game Design, Prototyping, and Development"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/16.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Note on Introduction to Game Design, Prototyping, and Development"/></a><div class="content"><a class="title" href="/2023/06/14/Note-on-Introduction-to-Game-Design-Prototyping-and-Development/" title="Note on Introduction to Game Design, Prototyping, and Development">Note on Introduction to Game Design, Prototyping, and Development</a><time datetime="2023-06-14T18:40:29.000Z" title="Created 2023-06-14 20:40:29">2023-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/Note-on-SQL/" title="Note on SQL"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/3.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Note on SQL"/></a><div class="content"><a class="title" href="/2023/06/14/Note-on-SQL/" title="Note on SQL">Note on SQL</a><time datetime="2023-06-14T18:32:52.000Z" title="Created 2023-06-14 20:32:52">2023-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/Note-on-Markdown/" title="Note on Markdown"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/24.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Note on Markdown"/></a><div class="content"><a class="title" href="/2023/06/14/Note-on-Markdown/" title="Note on Markdown">Note on Markdown</a><time datetime="2023-06-14T18:28:06.000Z" title="Created 2023-06-14 20:28:06">2023-06-14</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/14/Note-on-Regular-Expression/" title="Note on Regular Expression"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/4.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Note on Regular Expression"/></a><div class="content"><a class="title" href="/2023/06/14/Note-on-Regular-Expression/" title="Note on Regular Expression">Note on Regular Expression</a><time datetime="2023-06-14T18:27:01.000Z" title="Created 2023-06-14 20:27:01">2023-06-14</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="/lucasetzixun@gmail.com" title="Email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.facebook.com/lucas.oraf.9" title="Facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><img class="footer_mini_logo" title="Back To Top" onclick="anzhiyu.scrollToDest(0, 500)" src="/img/favicon.png" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/HoarfrostRaven" title="GitHub"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.linkedin.com/in/xianzhi-ye-853938229/" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></div><div class="copyright">&copy;2023 By Lucas Ye</div><div id="workboard"><div class="workSituationImg boardsign" id="img" src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-上班摸鱼中.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"></div><div id="runtimeTextTip"></div></div></div></footer></div></div></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="/img/favicon.png"/><div class="loading-image-dot"></div><div id="loading-percentage">0%</div></div></div><script>const loadingPercentage = document.getElementById("loading-percentage");
+let loadingPercentageTimer = setInterval(function() {
+  var progressBar = document.querySelector(".pace-progress");
+  if (!progressBar) return
+  var currentValue = progressBar.getAttribute("data-progress-text");
+  if (currentValue !== loadingPercentage.textContent) {
+    loadingPercentage.textContent = currentValue;
+    if (currentValue === "100%") {
+      clearInterval(loadingPercentageTimer);
+    }
+  }
+}, 100);
+const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+    Pace.restart()
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/progress_bar/progress_bar.css"/><script async="async" src="https://npm.elemecdn.com/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div id="sidebar"><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/about/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">Articles</div><div class="length-num">34</div></a><a href="/tags/" title="tag"><div class="headline">Tags</div><div class="length-num">13</div></a><a href="/categories/" title="category"><div class="headline">Categories</div><div class="length-num">6</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-book faa-tada" style="font-size: 0.9em;"></i><span> Article</span></a><ul class="menus_item_child" style="left:-79px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> Archives</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> Categories</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> Tags</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> About</span></a></div></div></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@4.0.31/dist/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@5.1.1/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/vanilla-lazyload@17.3.1/dist/lazyload.iife.min.js"></script><script src="https://npm.elemecdn.com/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("05/01/2023 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      img.src = "https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-下班啦.svg";
+      img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+      img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+    }
+
+    currentTimeHtml = `This site has been running for ${dnum} days<span id='runtime'> ${hnum} hours ${mnum} minutes ${snum} seconds </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="https://npm.elemecdn.com/algoliasearch@4.14.2/dist/algoliasearch-lite.umd.js"></script><script src="https://npm.elemecdn.com/instantsearch.js@4.46.1/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://npm.elemecdn.com/mermaid@9.1.7/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-hoarfrostraven.vercel.app',
+      region: 'ap-paris',
+      onCommentLoaded: function () {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-hoarfrostraven.vercel.app',
+      region: 'ap-paris',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://npm.elemecdn.com/twikoo@1.6.16/dist/twikoo.all.min.js').then(runFn)
+  }
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "visitor@lucas.com";</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script data-pjax>var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+var pageHeaderEl = document.getElementById("page-header");
+var navMusicEl = document.getElementById("nav-music");
+var consoleEl = document.getElementById("console");
+//- // 已随机的歌曲
+//- var selectRandomSong = [];
+//- // 音乐默认声音大小
+//- var musicVolume = 0.8;
+//- // 是否切换了周杰伦音乐列表
+//- var changeMusicListFlag = false;
+//- // 当前默认播放列表
+//- var defaultPlayMusicList = [];
+
+document.getElementById("page-name").innerText = document.title.split(" | B612")[0];
+anzhiyu.initIndexEssay();
+anzhiyu.changeTimeInEssay();
+anzhiyu.removeBodyPaceClass();
+//- anzhiyu.qrcodeCreate();
+//- anzhiyu.changeTimeInAlbumDetail();
+anzhiyu.reflashEssayWaterFall();
+anzhiyu.sayhi();
+anzhiyu.stopImgRightDrag();
+anzhiyu.addNavBackgroundInit();
+anzhiyu.setValueToBodyType();
+anzhiyu.catalogActive();
+anzhiyu.tagsPageActive();
+anzhiyu.categoriesBarActive();
+anzhiyu.topCategoriesBarScroll();
+
+//- anzhiyu.getCustomPlayList();
+anzhiyu.addEventListenerConsoleMusicList(false);
+setTimeout(() => {
+  if (typeof addFriendLinksInFooter === "function") {
+    addFriendLinksInFooter();
+  }
+}, 200)</script><script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>LA.init({id: "3EpO8Rn2LqHqcZrN", ck: "3EpO8Rn2LqHqcZrN"});
+new LingQue.Monitor().init({id: "3EpO8Rn2LqHqcZrN", sendSuspicious:true});</script><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.1.0/icon/ali_iconfont_css.css"><script src="https://npm.elemecdn.com/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
