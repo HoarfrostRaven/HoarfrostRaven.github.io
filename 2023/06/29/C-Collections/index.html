@@ -1,0 +1,721 @@
+<!DOCTYPE html><html lang="en" data-theme="dark"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"><title>C++: Collections | B612</title><meta name="keywords" content="C++"><meta name="author" content="Lucas Ye"><meta name="copyright" content="Lucas Ye"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#18171d"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="C++: Collections"><meta name="application-name" content="C++: Collections"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#18171d"><meta name="description" content="Intro集合提供了一种存储数据的方法。C++ 标准库（STL）提供了许多不同种类的集合，因此了解何时使用哪些集合是非常要的。这篇文章里将讨论 C++ 中常用的集合。 Big-O 表示法Big-O 表示法用于描述一个算法的运行时间和占用空间随着问题规模的扩展而相应扩展的速率，这个速率分别被称为时间复杂度和空间复杂度。 接下来我们主要讨论时间复杂度，空间复杂度与它的情况类似。 下表列出了最常见的从最">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++: Collections">
+<meta property="og:url" content="https://hoarfrostraven.github.io/2023/06/29/C-Collections/index.html">
+<meta property="og:site_name" content="B612">
+<meta property="og:description" content="Intro集合提供了一种存储数据的方法。C++ 标准库（STL）提供了许多不同种类的集合，因此了解何时使用哪些集合是非常要的。这篇文章里将讨论 C++ 中常用的集合。 Big-O 表示法Big-O 表示法用于描述一个算法的运行时间和占用空间随着问题规模的扩展而相应扩展的速率，这个速率分别被称为时间复杂度和空间复杂度。 接下来我们主要讨论时间复杂度，空间复杂度与它的情况类似。 下表列出了最常见的从最">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="https://hoarfrostraven.github.io/img/default_covers/21.jpg">
+<meta property="article:published_time" content="2023-06-29T18:20:58.000Z">
+<meta property="article:modified_time" content="2023-07-05T19:55:32.893Z">
+<meta property="article:author" content="Lucas Ye">
+<meta property="article:tag" content="C++">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://hoarfrostraven.github.io/img/default_covers/21.jpg"><link rel="shortcut icon" href="/img/favicon.png"><link rel="canonical" href="https://hoarfrostraven.github.io/2023/06/29/C-Collections/"><link rel="preconnect" href="//npm.elemecdn.com"/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//fonts.googleapis.com" crossorigin=""/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="manifest" href="/manifest.json"/><meta name="msapplication-TileColor" content="var(--anzhiyu-main)"/><link rel="mask-icon" href="/img/siteicon/apple-icon-180.png" color="#5bbad5"/><link rel="apple-touch-icon" sizes="180x180" href="/img/siteicon/apple-icon-180.png"/><link rel="apple-touch-icon-precomposed" sizes="180x180" href="/img/siteicon/apple-icon-180.png"/><link rel="icon" type="image/png" sizes="32x32" href="/img/siteicon/32.png"/><link rel="icon" type="image/png" sizes="16x16" href="/img/siteicon/16.png"/><link rel="bookmark" href="/img/siteicon/apple-icon-180.png"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-2732.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2732-2048.jpg" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2388.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2388-1668.jpg" media="(device-width: 834px) and (device-height: 1194px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1536-2048.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2048-1536.jpg" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1668-2224.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2224-1668.jpg" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1620-2160.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2160-1620.jpg" media="(device-width: 810px) and (device-height: 1080px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1290-2796.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2796-1290.jpg" media="(device-width: 430px) and (device-height: 932px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1179-2556.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2556-1179.jpg" media="(device-width: 393px) and (device-height: 852px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1284-2778.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2778-1284.jpg" media="(device-width: 428px) and (device-height: 926px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1170-2532.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2532-1170.jpg" media="(device-width: 390px) and (device-height: 844px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1125-2436.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2436-1125.jpg" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2688.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2688-1242.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-828-1792.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1792-828.jpg" media="(device-width: 414px) and (device-height: 896px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1242-2208.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-2208-1242.jpg" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-750-1334.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1334-750.jpg" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-640-1136.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: portrait)"/><link rel="apple-touch-startup-image" href="/img/siteicon/apple-splash-1136-640.jpg" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2) and (orientation: landscape)"/><script>if ('serviceWorker' in navigator) {
+  if (navigator.serviceWorker.controller) {
+    navigator.serviceWorker.addEventListener('controllerchange', function() {
+      location.reload()
+    })
+  }
+  window.addEventListener('load', function() {
+    navigator.serviceWorker.register('/service-worker.js')
+  })
+}</script><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://npm.elemecdn.com/@fortawesome/fontawesome-free@6.3.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/@fancyapps/ui@4.0.31/dist/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam&amp;display=swap" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Kalam&amp;display=swap" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = { 
+  root: '/',
+  friends_vue_info: undefined,
+  navMusic: false,
+  changeMainColorPost: undefined,
+  algolia: {"appId":"3N41NZW8GX","apiKey":"11352f4414174ffad35af634f05cd27d","indexName":"my-hexo-blog","hits":{"per_page":6},"languages":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}.","hits_stats":"${hits} results found in ${time} ms"}},
+  localSearch: undefined,
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlighjs","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: 'Copy successfully',
+    error: 'Copy error',
+    noSupport: 'The browser does not support'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: 'days',
+  date_suffix: {
+    just: 'Just',
+    min: 'minutes ago',
+    hour: 'hours ago',
+    day: 'days ago',
+    month: 'months ago'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"Traditional Chinese Activated Manually","cht_to_chs":"Simplified Chinese Activated Manually","day_to_night":"Dark Mode Activated Manually","night_to_day":"Light Mode Activated Manually","bgLight":"#3b70fc","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://npm.elemecdn.com/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://npm.elemecdn.com/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'C++: Collections',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-07-05 21:55:32'
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+    win.saveToLocal = {
+      set: function setWithExpiry(key, value, ttl) {
+        if (ttl === 0) return
+        const now = new Date()
+        const expiryDay = ttl * 86400000
+        const item = {
+          value: value,
+          expiry: now.getTime() + expiryDay,
+        }
+        localStorage.setItem(key, JSON.stringify(item))
+      },
+
+      get: function getWithExpiry(key) {
+        const itemStr = localStorage.getItem(key)
+
+        if (!itemStr) {
+          return undefined
+        }
+        const item = JSON.parse(itemStr)
+        const now = new Date()
+
+        if (now.getTime() > item.expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return item.value
+      }
+    }
+  
+    win.getScript = url => new Promise((resolve, reject) => {
+      const script = document.createElement('script')
+      script.src = url
+      script.async = true
+      script.onerror = reject
+      script.onload = script.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        script.onload = script.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(script)
+    })
+  
+    win.getCSS = (url,id = false) => new Promise((resolve, reject) => {
+      const link = document.createElement('link')
+      link.rel = 'stylesheet'
+      link.href = url
+      if (id) link.id = id
+      link.onerror = reject
+      link.onload = link.onreadystatechange = function() {
+        const loadState = this.readyState
+        if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+        link.onload = link.onreadystatechange = null
+        resolve()
+      }
+      document.head.appendChild(link)
+    })
+  
+      win.activateDarkMode = function () {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = function () {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(function (e) {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+    const detectApple = () => {
+      if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+    })(window)</script><meta name="generator" content="Hexo 6.3.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="web_box"><div id="web_container"><div id="menu-mask"></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><a id="site-name" href="/"><div class="title">B612</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-book faa-tada" style="font-size: 0.9em;"></i><span> Article</span></a><ul class="menus_item_child" style="left:-79px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> Archives</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> Categories</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> Tags</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> About</span></a></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> Search</span></a></div><div class="nav-button" id="darkmode_navswitch"><a class="darkmode_switchbutton" type="button" href="javascript:void(0);" title="Switch Between Light And Dark Mode" onclick="anzhiyu.switchDarkMode()"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke" style="font-size: 1.3rem"></i></a></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">Original</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/Software-Development/">Software Development</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/C/"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>C++</span></a></span></div></div><h1 class="post-title">C++: Collections</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="post-meta-icon anzhiyufont anzhiyu-icon-calendar-days"></i><span class="post-meta-label">Created</span><time datetime="2023-06-29T18:20:58.000Z" title="Created 2023-06-29 20:20:58">2023-06-29</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">Word count:</span><span class="word-count" title="文章字数">2.2k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">Reading time:</span><span>8min</span></span><span class="post-meta-separator"></span><span id="" data-flag-title="C++: Collections"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">Post View:</span><span id="twikoo_visitors" title="评论数"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为Paris"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>Paris</span><span class="post-meta-separator"></span><span class="post-meta-commentcount"><i class="anzhiyufont anzhiyu-icon-comments post-meta-icon"></i><span class="post-meta-label">Comments:</span><a href="/2023/06/29/C-Collections/#post-comment"><span id="twikoo-count"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></a></span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/default_covers/21.jpg"></div></header><main class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container"><h2 id="Intro"><a href="#Intro" class="headerlink" title="Intro"></a>Intro</h2><p><strong>集合</strong>提供了一种存储数据的方法。C++ 标准库（STL）提供了许多不同种类的集合，因此了解何时使用哪些集合是非常要的。这篇文章里将讨论 C++ 中常用的集合。</p>
+<h2 id="Big-O-表示法"><a href="#Big-O-表示法" class="headerlink" title="Big-O 表示法"></a>Big-O 表示法</h2><p>Big-O 表示法用于描述一个算法的运行时间和占用空间随着问题规模的扩展而相应扩展的速率，这个速率分别被称为<strong>时间复杂度</strong>和<strong>空间复杂度</strong>。</p>
+<p>接下来我们主要讨论时间复杂度，空间复杂度与它的情况类似。</p>
+<p>下表列出了最常见的从最快到最慢的时间复杂度。具有指数或更慢的时间复杂度的算法太慢，一般不会使用。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Big-O</th>
+<th style="text-align:center">描述方法</th>
+<th style="text-align:center">应用实例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
+<td style="text-align:center">Constant 常量</td>
+<td style="text-align:center">在链表前端插入元素，查找数组内的某个元素</td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">O(\log n)</script></td>
+<td style="text-align:center">Logarithmic 对数</td>
+<td style="text-align:center">二分查找</td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">O(\sqrt{n})</script></td>
+<td style="text-align:center">Square Root 平方根</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+<td style="text-align:center">Linear 线性</td>
+<td style="text-align:center">线性查找</td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">O(n \log n)</script></td>
+<td style="text-align:center">Linear Logarithmic 线性对数</td>
+<td style="text-align:center">归并排序，堆排序</td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">O(n^2)</script></td>
+<td style="text-align:center">Quadratic 二次方</td>
+<td style="text-align:center">插入排序，冒泡排序，选择排序</td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">O(n^3)</script></td>
+<td style="text-align:center">Cubic 三次方</td>
+<td style="text-align:center"></td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">O(2^n)</script></td>
+<td style="text-align:center">Exponential 指数</td>
+<td style="text-align:center">整数分解</td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">O(n!)</script></td>
+<td style="text-align:center">Factorial 阶乘</td>
+<td style="text-align:center">强制推销员旅行问题</td>
+</tr>
+<tr>
+<td style="text-align:center"><script type="math/tex">O(n^n)</script></td>
+<td style="text-align:center">N Power N</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="Big-O-Time-Complexity-Graph-in-algorithms.png" alt="Big-O-Time-Complexity-Graph-in-algorithms" style="zoom:80%;" /></p>
+<p>下表列出了常见的搜索和排序算法的时间复杂度和空间复杂度：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th style="text-align:center">Algorithm</th>
+<th style="text-align:center">Best Time Complexity</th>
+<th style="text-align:center">Average Time Complexity</th>
+<th style="text-align:center">Worst Time Complexity</th>
+<th style="text-align:center">Worst Space Complexity</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Linear Search</td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Binary Search</td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
+<td style="text-align:center"><script type="math/tex">O(log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Bubble Sort</td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n^2)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n^2)</script></td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Selection Sort</td>
+<td style="text-align:center"><script type="math/tex">O(n^2)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n^2)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n^2)</script></td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Insertion Sort</td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n^2)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n^2)</script></td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Merge Sort</td>
+<td style="text-align:center"><script type="math/tex">O(n \log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n \log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n \log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Quick Sort</td>
+<td style="text-align:center"><script type="math/tex">O(n \log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n \log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n^2)</script></td>
+<td style="text-align:center"><script type="math/tex">O(\log n)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Heap Sort</td>
+<td style="text-align:center"><script type="math/tex">O(n + k)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n \log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n \log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Bucket Sort</td>
+<td style="text-align:center"><script type="math/tex">O(n + k)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n + k)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n^2)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Radix Sort</td>
+<td style="text-align:center"><script type="math/tex">O(nk)</script></td>
+<td style="text-align:center"><script type="math/tex">O(nk)</script></td>
+<td style="text-align:center"><script type="math/tex">O(nk)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n + k)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Tim Sort</td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n \log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+</tr>
+<tr>
+<td style="text-align:center">Shell Sort</td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(n \log n)</script></td>
+<td style="text-align:center"><script type="math/tex">O(1)</script></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>有时候，对于特定规模的问题，具有更差的时间复杂度的算法可能表现得更好。例如，快速排序算法的平均时间复杂度为 <script type="math/tex">O(n \log n)</script>，而插入排序算法的时间复杂度为 <script type="math/tex">O(n^2)</script>。但是，对于小问题集来说（如集合中元素的个数小于 20），插入排序算法会比快速排序算法具有更快的执行时间，因为插入排序不使用递归算法。因此，需要根据实际情况选择合适的算法。</p>
+<h2 id="向量"><a href="#向量" class="headerlink" title="向量"></a>向量</h2><p><strong>向量</strong>是一个动态数组，它可以根据集合中的元素个数自动调整数组大小。如果想要把元素插入向量，可以使用 <code>push_back</code> 或 <code>emplace_back</code> 成员函数。这两个函数可以在向量的末端添加一个元素。对于非空向量，我们可以使用数组下标表示法来访问向量中的特定元素。例如，下面的代码声明了一个元素类型为浮点数的向量，然后在向量的末尾处添加了三个元素，最后在终端输出向量中的第三个元素：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// #include &lt;vector&gt; to use std::vector</span></span><br><span class="line">std::vector&lt;<span class="type">float</span>&gt; vectorOfFloats;</span><br><span class="line">vectorOfFloats.<span class="built_in">push_back</span>(<span class="number">5.0f</span>); <span class="comment">// Contents: &#123; 5.0f &#125;</span></span><br><span class="line">vectorOfFloats.<span class="built_in">push_back</span>(<span class="number">7.5f</span>); <span class="comment">// Contents: &#123; 5.0f, 7.5f &#125;</span></span><br><span class="line">vectorOfFloats.<span class="built_in">push_back</span>(<span class="number">10.0f</span>); <span class="comment">// Contents: &#123; 5.0f, 7.5f, 10.0f &#125;</span></span><br><span class="line">std::cout &lt;&lt; <span class="string">&quot;vectorOfFloats[2] = &quot;</span> &lt;&lt; vectorOfFloats[<span class="number">2</span>] &lt;&lt; std::endl;</span><br></pre></td></tr></table></figure>
+<p>从长远来看，往向量后端插入元素的算法的平均时间复杂度为 <script type="math/tex">O(1)</script>。但是，因为向量存在于一个连续的内存块中，所以往向量中的任意一个位置插入元素的算法的平均时间复杂度为 <script type="math/tex">O(n)</script>。基于上述原因，程序员应该避免随意向向量中插入元素。向量的连续内存分布带来的优点是访问索引处的元素的时间复杂度为 <script type="math/tex">O(1)</script>。</p>
+<h2 id="链表"><a href="#链表" class="headerlink" title="链表"></a>链表</h2><p><strong>链表</strong>可以把集合中的每个元素存储在内存中的任意位置中，并使用指针把它们链接在一起。我们可以通过 <code>push_front</code> 或 <code>emplace_front</code> 函数向链表的前端插入元素，通过 <code>push_back</code> 或 <code>emplace_back</code> 函数向链表的末端插入元素。以下代码段创建了一个元素类型为整数的链表，并插入了一些整数元素：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// #include &lt;list&gt; to use std::list</span></span><br><span class="line">std::list&lt;<span class="type">int</span>&gt; intList;</span><br><span class="line">intList.<span class="built_in">push_back</span>(<span class="number">4</span>);</span><br><span class="line">intList.<span class="built_in">push_back</span>(<span class="number">6</span>);</span><br><span class="line">intList.<span class="built_in">push_back</span>(<span class="number">8</span>);</span><br><span class="line">intList.<span class="built_in">push_back</span>(<span class="number">10</span>);</span><br><span class="line">intList.<span class="built_in">push_front</span>(<span class="number">2</span>);</span><br></pre></td></tr></table></figure>
+<p>下图展示了所有插入操作完成后的 <code>intList</code> 链表。链表的优点是向链表的任意一端插入元素的时间复杂度都是 <script type="math/tex">O(1)</script>，缺点是访问链表的第 <script type="math/tex">n</script> 个元素的时间复杂度是 <script type="math/tex">O(n)</script>。</p>
+<div class="mermaid-wrap"><pre class="mermaid-src" hidden>
+  
+flowchart LR
+	id1[[2]] --&gt; id2[[4]]
+	id2 --&gt; id3[[6]]
+	id3 --&gt; id4[[8]]
+	id4 --&gt; id5[[10]]
+	id5 --&gt; id4
+	id4 --&gt; id3
+	id3 --&gt; id2
+	id2 --&gt; id1
+
+  </pre></div>
+<div class="tip info"><p><strong><em>链表和向量，哪个更有效率？</em></strong></p>
+<p>如果集合中的每个元素占用的空间都很小（小于 64 字节），则向量几乎总是由于链表，这是 CPU 访问内存的方式造成的。</p>
+<p>对于 CPU 来说，从内存中读取数据是非常慢的操作。因此，当 CPU 需要从内存中读取数据时，它会把所读取数据的相邻数据也加载到 CPU 的高速缓存中。因为向量中的元素在内存中是连续的，所以在访问向量中的特定索引处的元素的时候，它的相邻元素也会被加载到高速缓存当中。因为链表中的元素不是连续存储的，所以在加载链表中的元素的时候，与该元素相邻但不相关的内容也会被加载到高速缓存当中。</p>
+<p>因此，对向量进行循环操作要比对链表进行循环操作要更加高效，即使这些循环操作的理论时间复杂度都是 <script type="math/tex">O(n)</script>。</p>
+</div>
+<h2 id="队列"><a href="#队列" class="headerlink" title="队列"></a>队列</h2><p><strong>队列</strong>的特点是<strong>先进先出（FIFO）</strong>。<code>std::queue</code> 的队列实现使用 <code>push</code> 函数或 <code>emplace</code> 函数进行插入操作，使用 <code>pop</code> 函数进行删除操作，通过 <code>front</code> 函数访问队列前端的元素。</p>
+<p>示例代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// #include &lt;queue&gt; to use std::queue</span></span><br><span class="line">std::queue&lt;<span class="type">int</span>&gt; intQueque;</span><br><span class="line">intQueue.<span class="built_in">push</span>(<span class="number">10</span>);</span><br><span class="line">intQueue.<span class="built_in">push</span>(<span class="number">20</span>);</span><br><span class="line">intQueue.<span class="built_in">push</span>(<span class="number">30</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">    std::cout &lt;&lt; intQueue.<span class="built_in">front</span>() &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    intQueue.<span class="built_in">pop</span>();</span><br><span class="line">&#125; <span class="comment">// output: 10 20 30</span></span><br></pre></td></tr></table></figure>
+<p><code>std::queue</code> 的队列实现保证了插入、访问和删除操作的时间复杂度为 <script type="math/tex">O(1)</script>。</p>
+<h2 id="栈"><a href="#栈" class="headerlink" title="栈"></a>栈</h2><p><strong>栈</strong>的特点是<strong>后进后出（LIFO）</strong>。<code>std::stack</code> 的实现使用 <code>push</code> 函数或 <code>emplace</code> 函数进行插入操作，使用 <code>pop</code> 函数进行删除操作，通过 <code>top</code> 函数访问“栈顶”的元素。</p>
+<p>示例代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// #include &lt;stack&gt; to use std::stack</span></span><br><span class="line">std::stack&lt;<span class="type">int</span>&gt; intStack;</span><br><span class="line">intStack.<span class="built_in">push</span>(<span class="number">10</span>);</span><br><span class="line">intStack.<span class="built_in">push</span>(<span class="number">20</span>);</span><br><span class="line">intStack.<span class="built_in">push</span>(<span class="number">30</span>);</span><br><span class="line"><span class="keyword">for</span>(<span class="type">int</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++)</span><br><span class="line">&#123;</span><br><span class="line">    std::cout &lt;&lt; intStack.<span class="built_in">top</span>() &lt;&lt; <span class="string">&#x27; &#x27;</span>;</span><br><span class="line">    intStack.<span class="built_in">pop</span>();</span><br><span class="line">&#125; <span class="comment">// output: 30 20 10</span></span><br></pre></td></tr></table></figure>
+<p><code>std::stack</code> 的实现保证了插入、访问和删除操作的时间复杂度为 <script type="math/tex">O(1)</script>。</p>
+<h2 id="映射"><a href="#映射" class="headerlink" title="映射"></a>映射</h2><p><strong>映射</strong>是按键排序的键值对 <code>&#123;key : value&#125;</code> 集合。映射中的每一个键都是唯一的。</p>
+<p>示例代码如下：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// #include &lt;map&gt; to use std::map</span></span><br><span class="line">std::map&lt;<span class="type">int</span>, std::string&gt; months;</span><br><span class="line">months.<span class="built_in">insert</span>(<span class="built_in">pair</span>&lt;<span class="type">int</span>, std::string&gt;(<span class="number">1</span>, <span class="string">&quot;January&quot;</span>));</span><br><span class="line">months[<span class="number">2</span>] = <span class="string">&quot;February&quot;</span>;</span><br><span class="line">months.<span class="built_in">emplace</span>(<span class="number">3</span>, <span class="string">&quot;March&quot;</span>);</span><br><span class="line">std::cout &lt;&lt; months[<span class="number">2</span>];  <span class="comment">// output: February</span></span><br></pre></td></tr></table></figure>
+<p>只有在键存在的时候，才可以使用上面的访问元素的代码。可以通过 <code>find</code> 函数来确认键是否存在，如果存在，函数会返回元素的迭代器。</p>
+<p><code>std::map</code> 内部的实现使用的是平衡二叉搜索树。这意味着它可以在 <script type="math/tex">O(\log n)</script> 的时间复杂度内根据键找到对应的元素。向映射中插入或删除元素的时间复杂度也是 <script type="math/tex">O(\log n)</script>。此外，这也导致循环映射中的内容是按键的升序排列的。</p>
+<h2 id="散列映射"><a href="#散列映射" class="headerlink" title="散列映射"></a>散列映射</h2><p><strong>散列映射</strong>是无序的映射，它的插入、删除和搜索操作的时间复杂度都是 <script type="math/tex">O(1)</script>。因此，在需要映射但不需要排序的情况下使用散列映射性能会优于普通映射。</p>
+<p><code>std::unordered_map</code> 与 <code>std::map</code> 有着相同的功能和函数。要使用散列映射需要添加 <code>#include &lt;unordered_map&gt;</code>。</p>
+<h2 id="迭代器、Auto-和基于范围的-For-循环"><a href="#迭代器、Auto-和基于范围的-For-循环" class="headerlink" title="迭代器、Auto 和基于范围的 For 循环"></a>迭代器、Auto 和基于范围的 For 循环</h2><h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><ol>
+<li><a target="_blank" rel="noopener" href="https://cstaleem.com/time-complexity-of-algorithms">Time Complexity Of Algorithms</a></li>
+</ol>
+</article><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="Read this article on your phone"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://hoarfrostraven.github.io/2023/06/29/C-Collections/"></div><div class="reward-dec">Read this article on your phone</div></div></div></div></div></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/C/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>C++<span class="tagsPageCount">3</span></a></div></div></div></div></div><div class="post-copyright"><i class="anzhiyufont anzhiyu-icon-copyright"></i><div class="post-copyright__author"><a class="post-copyright__original" title="This article is an original article, please pay attention to the copyright agreement" href="https://hoarfrostraven.github.io/2023/06/29/C-Collections/">Original</a><a class="post-copyright-title"><span>C++: Collections</span></a></div><div class="post-copyright-info-box"><span class="post-copyright-meta">Author: </span><span class="post-copyright-info"></span><a class="link" href="https://hoarfrostraven.github.io">Lucas Ye</a></div><div class="post-copyright__notice"><span class="post-copyright-meta">Link: </span><span class="post-copyright-info"><a class="link" href="https://hoarfrostraven.github.io/2023/06/29/C-Collections/">https://hoarfrostraven.github.io/2023/06/29/C-Collections/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta">Copyright Notice: </span><span class="post-copyright-info">All articles in this blog are licensed under <a target="_blank" rel="noopener" href="https://creativecommons.org/licenses/by-nc-sa/4.0/">CC BY-NC-SA 4.0</a> unless stating additionally.</span></div></div><nav class="pagination-post" id="pagination"><div class="prev-post pull-full"><a href="/2023/06/25/To-do-List/"><img class="prev-cover" src="/img/default_covers/21.jpg" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="pagination-info"><div class="label">Previous Post</div><div class="prev_info">To-do List</div></div></a></div></nav><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>Related Articles</span></div><div class="relatedPosts-list"><div><a href="/2023/06/25/C-Concepts-for-OOP/" title="C++: Concepts for OOP"><img class="cover" src="/img/default_covers/18.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-06-25</div><div class="title">C++: Concepts for OOP</div></div></a></div><div><a href="/2023/06/18/C-Reference-Pointer-and-Array/" title="C++: Reference, Pointer and Array"><img class="cover" src="/img/default_covers/14.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2023-06-18</div><div class="title">C++: Reference, Pointer and Array</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> Comment</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">Anonymous Comment</a></div><div class="comment-tips" id="comment-tips"><span>You don't need to delete empty lines. Comment directly for the best display effect.</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="author-info-top"> <div class="card-info-avatar"><a class="avatar-img" href="/about"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/about/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></a></div></div><div class="author-info__sayhi" id="author-info__sayhi"></div><h1 class="author-info__name">Lucas Ye</h1><div class="author-info__description">Embrace the Radiance, <br>Discover the Beauty ✨</div><div class="banner-button-group"><a class="banner-button" onclick="pjax.loadUrl(&quot;/about/&quot;)"><span class="banner-button-text">Learn More</span><i class="anzhiyufont anzhiyu-icon-arrow-circle-right" style="font-size: 1.5rem"></i></a></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>Catalog</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Intro"><span class="toc-number">1.</span> <span class="toc-text">Intro</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Big-O-%E8%A1%A8%E7%A4%BA%E6%B3%95"><span class="toc-number">2.</span> <span class="toc-text">Big-O 表示法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%90%91%E9%87%8F"><span class="toc-number">3.</span> <span class="toc-text">向量</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%93%BE%E8%A1%A8"><span class="toc-number">4.</span> <span class="toc-text">链表</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%9F%E5%88%97"><span class="toc-number">5.</span> <span class="toc-text">队列</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%88"><span class="toc-number">6.</span> <span class="toc-text">栈</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%98%A0%E5%B0%84"><span class="toc-number">7.</span> <span class="toc-text">映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%A3%E5%88%97%E6%98%A0%E5%B0%84"><span class="toc-number">8.</span> <span class="toc-text">散列映射</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%AD%E4%BB%A3%E5%99%A8%E3%80%81Auto-%E5%92%8C%E5%9F%BA%E4%BA%8E%E8%8C%83%E5%9B%B4%E7%9A%84-For-%E5%BE%AA%E7%8E%AF"><span class="toc-number">9.</span> <span class="toc-text">迭代器、Auto 和基于范围的 For 循环</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">10.</span> <span class="toc-text">References</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>Recent Post</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2023/06/29/C-Collections/" title="C++: Collections"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/21.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++: Collections"/></a><div class="content"><a class="title" href="/2023/06/29/C-Collections/" title="C++: Collections">C++: Collections</a><time datetime="2023-06-29T18:20:58.000Z" title="Created 2023-06-29 20:20:58">2023-06-29</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/25/To-do-List/" title="To-do List"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/21.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="To-do List"/></a><div class="content"><a class="title" href="/2023/06/25/To-do-List/" title="To-do List">To-do List</a><time datetime="2023-06-25T13:44:18.000Z" title="Created 2023-06-25 15:44:18">2023-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/25/C-Concepts-for-OOP/" title="C++: Concepts for OOP"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/18.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++: Concepts for OOP"/></a><div class="content"><a class="title" href="/2023/06/25/C-Concepts-for-OOP/" title="C++: Concepts for OOP">C++: Concepts for OOP</a><time datetime="2023-06-25T08:45:09.000Z" title="Created 2023-06-25 10:45:09">2023-06-25</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/19/Note-on-Hugging-Face/" title="Note on Hugging Face"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/10.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Note on Hugging Face"/></a><div class="content"><a class="title" href="/2023/06/19/Note-on-Hugging-Face/" title="Note on Hugging Face">Note on Hugging Face</a><time datetime="2023-06-19T14:18:55.000Z" title="Created 2023-06-19 16:18:55">2023-06-19</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2023/06/18/C-Reference-Pointer-and-Array/" title="C++: Reference, Pointer and Array"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/default_covers/14.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="C++: Reference, Pointer and Array"/></a><div class="content"><a class="title" href="/2023/06/18/C-Reference-Pointer-and-Array/" title="C++: Reference, Pointer and Array">C++: Reference, Pointer and Array</a><time datetime="2023-06-18T13:29:50.000Z" title="Created 2023-06-18 15:29:50">2023-06-18</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="/lucasetzixun@gmail.com" title="Email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.facebook.com/lucas.oraf.9" title="Facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><img class="footer_mini_logo" title="Back To Top" onclick="anzhiyu.scrollToDest(0, 500)" src="/img/favicon.png" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/HoarfrostRaven" title="GitHub"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.linkedin.com/in/xianzhi-ye-853938229/" title="LinkedIn"><i class="fa-brands fa-linkedin-in"></i></a></div><div class="copyright">&copy;2023 By Lucas Ye</div><div id="workboard"><div class="workSituationImg boardsign" id="img" src="https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-上班摸鱼中.svg" alt="距离月入25k也就还差一个大佬带我~" title="距离月入25k也就还差一个大佬带我~"></div><div id="runtimeTextTip"></div></div></div></footer></div></div></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="/img/favicon.png"/><div class="loading-image-dot"></div><div id="loading-percentage">0%</div></div></div><script>const loadingPercentage = document.getElementById("loading-percentage");
+let loadingPercentageTimer = setInterval(function() {
+  var progressBar = document.querySelector(".pace-progress");
+  if (!progressBar) return
+  var currentValue = progressBar.getAttribute("data-progress-text");
+  if (currentValue !== loadingPercentage.textContent) {
+    loadingPercentage.textContent = currentValue;
+    if (currentValue === "100%") {
+      clearInterval(loadingPercentageTimer);
+    }
+  }
+}, 100);
+const preloader = {
+  endLoading: () => {
+    document.body.style.overflow = 'auto';
+    document.getElementById('loading-box').classList.add("loaded")
+    Pace.restart()
+  },
+  initLoading: () => {
+    document.body.style.overflow = '';
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/progress_bar/progress_bar.css"/><script async="async" src="https://npm.elemecdn.com/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div id="sidebar"><div id="sidebar-menus"><div class="avatar-img is-center"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" data-lazy-src="/img/about/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">Articles</div><div class="length-num">47</div></a><a href="/tags/" title="tag"><div class="headline">Tags</div><div class="length-num">18</div></a><a href="/categories/" title="category"><div class="headline">Categories</div><div class="length-num">8</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page faa-parent animated-hover" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-book faa-tada" style="font-size: 0.9em;"></i><span> Article</span></a><ul class="menus_item_child" style="left:-79px;"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> Archives</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> Categories</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> Tags</span></a></li></ul></div><div class="menus_item"><a class="site-page faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> About</span></a></div></div></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="Read Mode"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="darkmode" type="button" title="Switch Between Light And Dark Mode"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="Toggle between single-column and double-column"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside_config" type="button" title="Setting"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="Table Of Contents"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="Scroll To Comments"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="Back To Top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="algolia-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">Search</span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="search-wrap"><div id="algolia-search-input"></div><hr/><div id="algolia-search-results"><div id="algolia-hits"></div><div id="algolia-pagination"></div><div id="algolia-info"><div class="algolia-stats"></div><div class="algolia-poweredBy"></div></div></div></div></div><div id="search-mask"></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://npm.elemecdn.com/@fancyapps/ui@4.0.31/dist/fancybox.umd.js"></script><script src="https://npm.elemecdn.com/instant.page@5.1.1/instantpage.js" type="module"></script><script src="https://npm.elemecdn.com/vanilla-lazyload@17.3.1/dist/lazyload.iife.min.js"></script><script src="https://npm.elemecdn.com/node-snackbar@0.1.16/dist/snackbar.min.js"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('https://npm.elemecdn.com/pangu@4.0.7/dist/browser/pangu.min.js')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script async src="/anzhiyu/random.js"></script><script async="async">(function () {
+  var grt = new Date("05/01/2023 00:00:00"); //设置网站上线时间
+  var now = new Date();
+  var dnum;
+  var hnum;
+  var mnum;
+  var snum;
+  var nowHour;
+
+  // 计算并更新天数、小时数、分钟数和秒数
+  function updateTime() {
+    now = new Date(); // 更新 now 的值
+    nowHour = now.getHours(); // 更新 nowHour 的值
+    var days = (now - grt) / 1000 / 60 / 60 / 24;
+    dnum = Math.floor(days);
+    var hours = (now - grt) / 1000 / 60 / 60 - 24 * dnum;
+    hnum = Math.floor(hours);
+    if (String(hnum).length == 1) {
+      hnum = "0" + hnum;
+    }
+    var minutes = (now - grt) / 1000 / 60 - 24 * 60 * dnum - 60 * hnum;
+    mnum = Math.floor(minutes);
+    if (String(mnum).length == 1) {
+      mnum = "0" + mnum;
+    }
+    var seconds = (now - grt) / 1000 - 24 * 60 * 60 * dnum - 60 * 60 * hnum - 60 * mnum;
+    snum = Math.round(seconds);
+    if (String(snum).length == 1) {
+      snum = "0" + snum;
+    }
+  }
+
+  // 更新网页中显示的网站运行时间
+  function updateHtml() {
+    const footer = document.getElementById("footer");
+    if (!footer) return
+    let currentTimeHtml = "";
+    if (nowHour < 18 && nowHour >= 9) {
+      // 如果是上班时间，默认就是"安知鱼-上班摸鱼中.svg"图片，不需要更改
+    } else {
+      // 如果是下班时间，插入"安知鱼-下班啦.svg"图片
+      let img = document.querySelector("#workboard .workSituationImg");
+      img.src = "https://npm.elemecdn.com/anzhiyu-blog@2.0.4/img/badge/安知鱼-下班啦.svg";
+      img.title = "下班了就该开开心心的玩耍，嘿嘿~";
+      img.alt = "下班了就该开开心心的玩耍，嘿嘿~";
+    }
+
+    currentTimeHtml = `This site has been running for ${dnum} days<span id='runtime'> ${hnum} hours ${mnum} minutes ${snum} seconds </span><i class='anzhiyufont anzhiyu-icon-heartbeat' style='color:red'></i>`;
+
+    if (document.getElementById("runtimeTextTip")) {
+      document.getElementById("runtimeTextTip").innerHTML = currentTimeHtml;
+    }
+  }
+
+  setInterval(() => {
+    updateTime();
+    updateHtml();
+  }, 1000);
+})();</script><script src="https://npm.elemecdn.com/algoliasearch@4.14.2/dist/algoliasearch-lite.umd.js"></script><script src="https://npm.elemecdn.com/instantsearch.js@4.46.1/dist/instantsearch.production.min.js"></script><script src="/js/search/algolia.js"></script><div class="js-pjax"><script>if (!window.MathJax) {
+  window.MathJax = {
+    tex: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"]],
+      tags: 'ams'
+    },
+    chtml: {
+      scale: 1.2
+    },
+    options: {
+      renderActions: {
+        findScript: [10, doc => {
+          for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+            const display = !!node.type.match(/; *mode=display/)
+            const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+            const text = document.createTextNode('')
+            node.parentNode.replaceChild(text, node)
+            math.start = {node: text, delim: '', n: 0}
+            math.end = {node: text, delim: '', n: 0}
+            doc.math.push(math)
+          }
+        }, ''],
+        insertScript: [200, () => {
+          document.querySelectorAll('mjx-container:not\([display]\)').forEach(node => {
+            const target = node.parentNode
+            if (target.nodeName.toLowerCase() === 'li') {
+              target.parentNode.classList.add('has-jax')
+            } else {
+              target.classList.add('has-jax')
+            }
+          });
+        }, '', false]
+      }
+    }
+  }
+  
+  const script = document.createElement('script')
+  script.src = 'https://npm.elemecdn.com/mathjax@3.2.2/es5/tex-mml-chtml.js'
+  script.id = 'MathJax-script'
+  script.async = true
+  document.head.appendChild(script)
+} else {
+  MathJax.startup.document.state(0)
+  MathJax.texReset()
+  MathJax.typeset()
+}</script><script>(() => {
+  const $mermaidWrap = document.querySelectorAll('#article-container .mermaid-wrap')
+  if ($mermaidWrap.length) {
+    window.runMermaid = () => {
+      window.loadMermaid = true
+      const theme = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'default'
+
+      Array.from($mermaidWrap).forEach((item, index) => {
+        const mermaidSrc = item.firstElementChild
+        const mermaidThemeConfig = '%%{init:{ \'theme\':\'' + theme + '\'}}%%\n'
+        const mermaidID = 'mermaid-' + index
+        const mermaidDefinition = mermaidThemeConfig + mermaidSrc.textContent
+        mermaid.mermaidAPI.render(mermaidID, mermaidDefinition, (svgCode) => {
+          mermaidSrc.insertAdjacentHTML('afterend', svgCode)
+        })
+      })
+    }
+
+    const loadMermaid = () => {
+      window.loadMermaid ? runMermaid() : getScript('https://npm.elemecdn.com/mermaid@9.1.7/dist/mermaid.min.js').then(runMermaid)
+    }
+
+    window.pjax ? loadMermaid() : document.addEventListener('DOMContentLoaded', loadMermaid)
+  }
+})()</script><script>(()=>{
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo-hoarfrostraven.vercel.app',
+      region: 'ap-paris',
+      onCommentLoaded: function () {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo-hoarfrostraven.vercel.app',
+      region: 'ap-paris',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(function (res) {
+      countELement.innerText = res[0].count
+    }).catch(function (err) {
+      console.error(err);
+    });
+  }
+
+  const runFn = () => {
+    init()
+    GLOBAL_CONFIG_SITE.isPost && getCount()
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') {
+      setTimeout(runFn,0)
+      return
+    } 
+    getScript('https://npm.elemecdn.com/twikoo@1.6.16/dist/twikoo.all.min.js').then(runFn)
+  }
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = () => {
+      loadTwikoo()
+    }
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>var visitorMail = "visitor@lucas.com";</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script data-pjax>var themeColorMeta = document.querySelector('meta[name="theme-color"]');
+var pageHeaderEl = document.getElementById("page-header");
+var navMusicEl = document.getElementById("nav-music");
+var consoleEl = document.getElementById("console");
+//- // 已随机的歌曲
+//- var selectRandomSong = [];
+//- // 音乐默认声音大小
+//- var musicVolume = 0.8;
+//- // 是否切换了周杰伦音乐列表
+//- var changeMusicListFlag = false;
+//- // 当前默认播放列表
+//- var defaultPlayMusicList = [];
+
+document.getElementById("page-name").innerText = document.title.split(" | B612")[0];
+anzhiyu.initIndexEssay();
+anzhiyu.changeTimeInEssay();
+anzhiyu.removeBodyPaceClass();
+//- anzhiyu.qrcodeCreate();
+//- anzhiyu.changeTimeInAlbumDetail();
+anzhiyu.reflashEssayWaterFall();
+anzhiyu.sayhi();
+anzhiyu.stopImgRightDrag();
+anzhiyu.addNavBackgroundInit();
+anzhiyu.setValueToBodyType();
+anzhiyu.catalogActive();
+anzhiyu.tagsPageActive();
+anzhiyu.categoriesBarActive();
+anzhiyu.topCategoriesBarScroll();
+
+//- anzhiyu.getCustomPlayList();
+anzhiyu.addEventListenerConsoleMusicList(false);
+setTimeout(() => {
+  if (typeof addFriendLinksInFooter === "function") {
+    addFriendLinksInFooter();
+  }
+}, 200)</script><script charset="UTF-8" id="LA_COLLECT" src="https://sdk.51.la/js-sdk-pro.min.js"></script><script src="https://sdk.51.la/perf/js-sdk-perf.min.js" crossorigin="anonymous"></script><script>LA.init({id: "3EpO8Rn2LqHqcZrN", ck: "3EpO8Rn2LqHqcZrN"});
+new LingQue.Monitor().init({id: "3EpO8Rn2LqHqcZrN", sendSuspicious:true});</script><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.1.0/icon/ali_iconfont_css.css"><script src="https://npm.elemecdn.com/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  window.tocScrollFn && window.removeEventListener('scroll', window.tocScrollFn)
+  window.scrollCollect && window.removeEventListener('scroll', scrollCollect)
+
+  document.getElementById('rightside').style.cssText = "opacity: ''; transform: ''"
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof chatBtnFn === 'function' && chatBtnFn()
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', (e) => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script></div></body></html>
