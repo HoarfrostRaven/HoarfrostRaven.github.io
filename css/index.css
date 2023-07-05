@@ -9640,9 +9640,7 @@ blockquote {
   min-width: 75px;
 }
 #post .post-copyright .post-copyright-info {
-  position: relative;
   padding-left: 6px;
-  z-index: 2;
 }
 #post .post-copyright .post-copyright-info a {
   word-break: break-word;
@@ -17952,7 +17950,7 @@ body:has(#console.show) #nav-music .aplayer .aplayer-lrc .aplayer-lrc-contents {
   }
 } */
 
-/* body[data-type="essay"] #page {
+body[data-type="essay"] #page {
   border: 0;
   box-shadow: none !important;
   padding: 0 !important;
@@ -18191,10 +18189,10 @@ body[data-type="essay"] #web_bg {
 }
 #bber .aplayer .aplayer-info .aplayer-controller .aplayer-time {
   position: initial;
-} */
+}
 
 /* 顶部样式 */
-/* .author-content.author-content-item.essayPage {
+.author-content.author-content-item.essayPage {
   height: 19rem;
   color: var(--anzhiyu-white);
   overflow: hidden;
@@ -18203,10 +18201,10 @@ body[data-type="essay"] #web_bg {
 body[data-type="essay"] #page .author-content-item .card-content .banner-button-group .banner-button:hover {
   color: var(--anzhiyu-white);
   border-radius: 20px !important;
-} */
+}
 
 /* 响应式 */
-/* @media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
   #bber .timeline ul li.bber-item {
     width: 49%;
     margin-right: 1%;
@@ -18230,9 +18228,9 @@ body[data-type="essay"] #page .author-content-item .card-content .banner-button-
   line-height: 30px !important;
   height: 40px !important;
   margin: 0 !important;
-} */
+}
 
-/* #bbTimeList {
+#bbTimeList {
   background: var(--anzhiyu-white);
   color: var(--anzhiyu-fontcolor);
   padding: 0.5rem 1rem;
@@ -18312,10 +18310,10 @@ i.bber-gotobb {
 #bbTimeList:hover {
   border: var(--style-border-hover);
   box-shadow: var(--anzhiyu-shadow-main);
-} */
+}
 
 /* 文章页H1-H6图标样式效果 */
-/* @-webkit-keyframes rotate {
+@-webkit-keyframes rotate {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -18334,7 +18332,7 @@ i.bber-gotobb {
     -webkit-transform: rotate(-1turn);
     transform: rotate(-1turn);
   }
-} */
+}
 
 /* 音乐播放器 */
 
