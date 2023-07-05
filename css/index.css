@@ -9640,9 +9640,7 @@ blockquote {
   min-width: 75px;
 }
 #post .post-copyright .post-copyright-info {
-  position: relative;
   padding-left: 6px;
-  z-index: 2;
 }
 #post .post-copyright .post-copyright-info a {
   word-break: break-word;
@@ -16424,7 +16422,7 @@ html.hide-aside .layout > div:first-child {
   }
 }
 
-/* #aside-content .card-widget#card-wechat {
+#aside-content .card-widget#card-wechat {
   background: #57bd6a;
   display: flex;
   justify-content: center;
@@ -16476,7 +16474,7 @@ html.hide-aside .layout > div:first-child {
 #flip-wrapper:hover #flip-content {
   -webkit-transform: rotateY(180deg);
   transform: rotateY(180deg);
-} */
+}
 
 /* 分类目录条、标签目录条 */
 #catalog-bar {
@@ -16646,6 +16644,144 @@ a.catalog-more:hover {
     border: none;
     border-radius: 0px;
     padding: 0.5rem 20px;
+  }
+}
+
+/*和风天气 */
+#he-plugin-simple {
+  z-index: 92;
+  transition: 0.3s;
+  position: fixed !important;
+}
+
+#he-plugin-simple.shown {
+  opacity: 0.5;
+  pointer-events: unset;
+}
+
+#he-plugin-simple .sticker-important {
+  color: var(--anzhiyu-white) !important;
+}
+
+.s-sticker div[data-v-41ba7e2c]:not(:first-child):not(:last-child) {
+  padding: 0 0.07em !important;
+}
+
+body:has(#sidebar-menus.open) #he-plugin-simple {
+  z-index: 104;
+  left: 95px !important;
+  opacity: 1;
+  display: block;
+  transition: 0.3s;
+}
+
+div.s-sticker {
+  background-color: transparent !important;
+}
+.s-sticker div {
+  color: var(--font-color) !important;
+  font-weight: bold;
+}
+body:has(.post-bg.nav-fixed) #he-plugin-simple .s-sticker div {
+  color: var(--font-color) !important;
+}
+body:has(.post-bg) #he-plugin-simple .s-sticker div {
+  color: var(--anzhiyu-white) !important;
+}
+[data-theme="dark"] body:has(.post-bg) #he-plugin-simple .s-sticker div {
+  color: var(--font-color) !important;
+}
+
+#weather-view-he {
+  height: 285px !important;
+  padding: 10px !important;
+  border-radius: 10px !important;
+  background-color: var(--anzhiyu-card-bg) !important;
+  box-shadow: rgba(0, 0, 0, 0.1) 0 0 20px;
+  margin-top: 20px !important;
+  transform: 0.3s;
+  opacity: 1;
+}
+.s-sticker ~ [data-v-41ba7e2c] {
+  opacity: 0;
+}
+[data-v-41ba7e2c]:has([data-v-db6ccf64][data-v-41ba7e2c]) {
+  opacity: 1;
+}
+[data-v-db6ccf64][data-v-41ba7e2c] {
+  top: 38px !important;
+}
+.wv-lt-location,
+.wv-lt-refresh {
+  display: inline-block;
+}
+.wv-lt-location a {
+  padding: 0 5px;
+  border-radius: 3px;
+  color: var(--anzhiyu-blue) !important;
+  background-color: var(--anzhiyu-blue-tint);
+  text-decoration: none !important;
+}
+.wv-lt-col-5 {
+  text-align: right;
+}
+.wv-lt-refresh a {
+  font-size: 0 !important;
+}
+.wv-lt-refresh a::after {
+  content: "\5b89\77e5\9c7c\548c\98ce";
+  font-size: small !important;
+}
+.vw-f-cell a,
+.wv-n-h-now-rain-text,
+.wv-n-h-now-tmp span,
+.wv-n-h-now-txt span,
+.wv-n-h-now-txt-t {
+  color: var(--anzhiyu-fontcolor) !important;
+}
+.wv-f-table div .vw-f-cell:nth-child(1) a {
+  color: #9b9b9b !important;
+}
+.wv-top-backdrop {
+  height: 285px !important;
+  padding-top: 50px !important;
+}
+.wv-top-backdrop::after {
+  content: "\8BF7\4F7F\7528\952E\76D8\2191\2193\9009\62E9\FF0C\56DE\8F66\9009\5B9A" !important;
+  padding-left: 5%;
+}
+.wv-top-button,
+.wv-top-select {
+  height: 36px !important;
+  border: none !important;
+  border-radius: 5px !important;
+  cursor: pointer;
+  transition: 0.25s;
+}
+.wv-top-select {
+  padding-left: 10px !important;
+}
+.wv-top-button {
+  background-color: var(--anzhiyu-blue) !important;
+  color: #fff !important;
+}
+
+.wv-top-button:hover {
+  background-color: var(--anzhiyu-blue-hover) !important;
+}
+.wv-top-button:active {
+  background-color: var(--anzhiyu-blue-hover) !important;
+}
+
+@media screen and (max-width: 1400px) {
+  #he-plugin-simple {
+    display: none;
+  }
+}
+
+@media screen and (min-width: 1400px) and (max-width: 1690px) {
+  #he-plugin-simple {
+    left: 262px !important;
   }
 }
 
@@ -16825,7 +16961,7 @@ details .content > *:nth-child(1) {
   margin-top: 0;
 }
 
-/* .comment-barrage {
+.comment-barrage {
   position: fixed;
   bottom: 0;
   right: 20px;
@@ -16978,7 +17114,7 @@ details .content > *:nth-child(1) {
     transform: translateY(20px);
     opacity: 0;
   }
-} */
+}
 
 /* 中控台 */
 #console {
@@ -17942,7 +18078,7 @@ body:has(#console.show) #nav-music .aplayer .aplayer-lrc .aplayer-lrc-contents {
   }
 }
 /* 歌词超出文本滚动动画 */
-/* @keyframes an-text-roll {
+@keyframes an-text-roll {
   from {
     margin-left: 0;
   }
@@ -17950,9 +18086,9 @@ body:has(#console.show) #nav-music .aplayer .aplayer-lrc .aplayer-lrc-contents {
     margin-left: 100%;
     transform: translateX(-100%);
   }
-} */
+}
 
-/* body[data-type="essay"] #page {
+body[data-type="essay"] #page {
   border: 0;
   box-shadow: none !important;
   padding: 0 !important;
@@ -18191,10 +18327,10 @@ body[data-type="essay"] #web_bg {
 }
 #bber .aplayer .aplayer-info .aplayer-controller .aplayer-time {
   position: initial;
-} */
+}
 
 /* 顶部样式 */
-/* .author-content.author-content-item.essayPage {
+.author-content.author-content-item.essayPage {
   height: 19rem;
   color: var(--anzhiyu-white);
   overflow: hidden;
@@ -18203,10 +18339,10 @@ body[data-type="essay"] #web_bg {
 body[data-type="essay"] #page .author-content-item .card-content .banner-button-group .banner-button:hover {
   color: var(--anzhiyu-white);
   border-radius: 20px !important;
-} */
+}
 
 /* 响应式 */
-/* @media screen and (max-width: 1200px) {
+@media screen and (max-width: 1200px) {
   #bber .timeline ul li.bber-item {
     width: 49%;
     margin-right: 1%;
@@ -18230,9 +18366,9 @@ body[data-type="essay"] #page .author-content-item .card-content .banner-button-
   line-height: 30px !important;
   height: 40px !important;
   margin: 0 !important;
-} */
+}
 
-/* #bbTimeList {
+#bbTimeList {
   background: var(--anzhiyu-white);
   color: var(--anzhiyu-fontcolor);
   padding: 0.5rem 1rem;
@@ -18312,10 +18448,10 @@ i.bber-gotobb {
 #bbTimeList:hover {
   border: var(--style-border-hover);
   box-shadow: var(--anzhiyu-shadow-main);
-} */
+}
 
 /* 文章页H1-H6图标样式效果 */
-/* @-webkit-keyframes rotate {
+@-webkit-keyframes rotate {
   0% {
     -webkit-transform: rotate(0deg);
     transform: rotate(0deg);
@@ -18334,7 +18470,7 @@ i.bber-gotobb {
     -webkit-transform: rotate(-1turn);
     transform: rotate(-1turn);
   }
-} */
+}
 
 /* 音乐播放器 */
 
@@ -18907,7 +19043,7 @@ div#archive {
 }
 
 /* 顶部样式 */
-/* .fcircle_page .author-content.fcirclePage {
+.fcircle_page .author-content.fcirclePage {
   height: 19rem;
   color: var(--anzhiyu-white);
   overflow: hidden;
@@ -18937,10 +19073,10 @@ body[data-type="fcircle"] #page {
 .fcircle_page .cf-article-avatar a:hover {
   background: none !important;
   color: var(--anzhiyu-fontcolor) !important;
-} */
+}
 /* 随机文章样式 */
 
-/* .title-h2-a {
+.title-h2-a {
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -19000,9 +19136,9 @@ body[data-type="fcircle"] #page {
 }
 .fcircle_page .fish-pond-item .cf-article .cf-article-title {
   line-height: 2;
-} */
+}
 
-/* #greetingBox {
+#greetingBox {
   position: fixed;
   top: 10px;
   left: 15%;
@@ -19029,7 +19165,7 @@ body[data-type="fcircle"] #page {
 #greeting.shown {
   opacity: 1;
   top: 0;
-} */
+}
 
 /* 首页分类框展示 */
 .categoryGroup {
@@ -20092,7 +20228,7 @@ div#swiper_container:hover {
 b, strong {
   color: var(--anzhiyu-lighttext);
 }
-/* .about-reward {
+.about-reward {
   position: absolute;
   top: 1rem;
   right: 2rem;
@@ -20104,10 +20240,10 @@ b, strong {
   .reward #tube-con {
     display: none;
   }
-} */
+}
 
 /* rightMenu右键菜单 */
-/* #rightMenu {
+#rightMenu {
   display: none;
   position: fixed;
   padding: 0 0.25rem;
@@ -20176,7 +20312,7 @@ b, strong {
 }
 #rightMenu .rightMenu-group .rightMenu-item span {
   line-height: 1.5rem;
-} */
+}
 #rightmenu-mask {
   position: fixed;
   width: 100vw;
@@ -20190,12 +20326,12 @@ b, strong {
   margin: 0 !important;
 }
 
-/* @media screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   :root {
     --style-border: 1px solid var(--anzhiyu-card-border);
     --style-border-hover: 1px solid var(--anzhiyu-theme);
   }
-} */
+}
 
 [data-theme="dark"] body[data-type="room"] #page {
   background: #000 !important;
