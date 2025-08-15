@@ -19003,7 +19003,7 @@ html.hide-aside .layout > div:first-child {
   /* 分类/标签较少时，可以选择不设置 width，居中显示 catalog-list-item */
   display: flex;
   white-space: nowrap;
-  overflow-x: scroll;
+  overflow-x: hidden;
 }
 
 #catalog-list::-webkit-scrollbar {
@@ -19042,7 +19042,6 @@ a.catalog-more {
 a.catalog-more:hover {
   color: var(--anzhiyu-theme);
 }
-
 #categoryBar {
   width: 100%;
   display: flex;
