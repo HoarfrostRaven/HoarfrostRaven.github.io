@@ -19116,9 +19116,6 @@ a.catalog-more:hover {
   background: var(--anzhiyu-background);
 }
 
-@media (prefers-color-scheme: light) {
-  /* 浅色模式样式 */
-}
 @media screen and (max-width: 768px) {
   #catalog-bar i {
     margin-right: 5px;
@@ -19151,7 +19148,6 @@ a.catalog-more:hover {
     padding: 0.5rem 20px;
   }
 }
-
 /*和风天气 */
 #he-plugin-simple {
   z-index: 92;
