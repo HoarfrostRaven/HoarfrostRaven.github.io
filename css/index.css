@@ -19010,7 +19010,7 @@ html.hide-aside .layout > div:first-child {
   display: none;
 }
 
-/* .catalog-list-item a {
+.catalog-list-item a {
   margin-right: 0.3rem;
   font-weight: bold;
   color: var(--font-color);
@@ -19030,7 +19030,7 @@ html.hide-aside .layout > div:first-child {
 .catalog-list-item.selected a {
   background: var(--anzhiyu-lighttext);
   color: var(--anzhiyu-white);
-} */
+}
 
 a.catalog-more {
   min-width: fit-content;
