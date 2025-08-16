@@ -548,7 +548,7 @@ const anzhiyu = {
         t
       );
     };
-    $sayhiEl && ($sayhiEl.innerHTML = getTimeState() + "I am");
+    $sayhiEl && ($sayhiEl.innerHTML = "I am");
   },
   // 友链注入预设评论
   addFriendLink() {
