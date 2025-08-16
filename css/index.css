@@ -19004,6 +19004,7 @@ html.hide-aside .layout > div:first-child {
   display: flex;
   white-space: nowrap;
   overflow-x: hidden;
+  padding-left: 5px;
 }
 
 #catalog-list::-webkit-scrollbar {
@@ -19092,7 +19093,7 @@ a.catalog-more:hover {
 }
 
 #category #catalog-list .catalog-list-item:first-child {
-  margin-left: 200px;
+  margin-left: 5px;
 }
 
 .catalog-list-item:hover a {
