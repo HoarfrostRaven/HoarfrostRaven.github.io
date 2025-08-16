@@ -5711,7 +5711,7 @@ body[data-type="link"] #page .page-title {
   display: box;
   display: flex;
   color: var(--anzhiyu-lighttext);
-  font-size: 0.5rem;
+  font-size: 0.8rem;
   margin-right: 8px;
   top: 5px;
   position: absolute;
@@ -19004,7 +19004,7 @@ html.hide-aside .layout > div:first-child {
   display: flex;
   white-space: nowrap;
   overflow-x: hidden;
-  padding-left: 5px;
+  margin-left: 5px;
 }
 
 #catalog-list::-webkit-scrollbar {
@@ -19090,10 +19090,6 @@ a.catalog-more:hover {
 
 #category a.catalog-list-item.select a {
   display: none;
-}
-
-#category #catalog-list .catalog-list-item:first-child {
-  margin-left: 5px;
 }
 
 .catalog-list-item:hover a {
